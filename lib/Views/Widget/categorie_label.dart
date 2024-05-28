@@ -3,8 +3,8 @@ import 'package:flymenu/Helper/colors_constante.dart';
 
 class CategorieLabel extends StatefulWidget {
 
-  const CategorieLabel({super.key});
-
+  const CategorieLabel({super.key, required this.label});
+  final String label;
   @override
   CategorieLabelState createState() => CategorieLabelState();
 }
@@ -17,7 +17,7 @@ class CategorieLabelState extends State<CategorieLabel> {
   Color _colorBorder = Colors.transparent;
   double _width = 0;
 
-  String label = "Hello world";
+  CategorieLabelState();
 
   void toggleSelection(){
     setState(() {
@@ -61,7 +61,7 @@ class CategorieLabelState extends State<CategorieLabel> {
               AnimatedDefaultTextStyle(
                   style: TextStyle(color: _colorText, fontSize: 14),
                   duration: const Duration(seconds: 1),
-                  child: Text(label)
+                  child: Text(widget.label)
               ),
             ],
           ),
