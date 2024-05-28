@@ -42,3 +42,5 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 /lib/widget_preview_wrapper.dart
+/windows/flutter/generated_plugin_registrant.cc
+/windows/flutter/generated_plugin_registrant.h

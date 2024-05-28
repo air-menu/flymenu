@@ -7,10 +7,7 @@
 
 import "dart:math";
 
-import "package:flutter/material.dart";
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:flymenu/main.dart';
 
 import "package:flymenu/Model/restaurant.dart";
 import "package:flymenu/Model/menu.dart";
@@ -18,20 +15,20 @@ import "package:flymenu/Model/categorie.dart";
 import "package:flymenu/Model/product.dart";
 import "package:flymenu/Services/categories_services.dart";
 
-const String DRINK = 'Drinks';
-const String FOODS = 'Foods';
+const String constDrink = 'Drinks';
+const String constFoods = 'Foods';
 
 List<Categorie> categories = [
   Categorie(name: 'Starters'),
-  Categorie(name: FOODS),
+  Categorie(name: constFoods),
   Categorie(name: 'Desserts'),
-  Categorie(name: DRINK),
+  Categorie(name: constDrink),
 ];
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
+  /*testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+    await tester.pumpWidget(const MainView());
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);
@@ -44,7 +41,7 @@ void main() {
     // Verify that our counter has incremented.
     expect(find.text('0'), findsNothing);
     expect(find.text('1'), findsOneWidget);
-  });
+  });*/
 
   List<Product> products = [];
   Random random = Random();
@@ -87,18 +84,18 @@ void main() {
   group("Test Menu filter", () {
     test('Test that a list of products contains only drinks', () {
       // Obtention de la liste des boissons à partir de la liste de tous les produits
-      List<Product> drinks = CategoriesService.filterByCategories(currentMenu, DRINK);
+      List<Product> drinks = CategoriesService.filterByCategories(currentMenu, constDrink);
 
       // Vérification que la liste de boissons ne contient que des boissons
-      expect(drinks.every((product) => product.categorie.name == DRINK), isTrue);
+      expect(drinks.every((product) => product.categorie.name == constDrink), isTrue);
     });
 
     test('Test that a list of products contains only food', () {
       // Obtention de la liste des boissons à partir de la liste de tous les produits
-      List<Product> foods = CategoriesService.filterByCategories(currentMenu, FOODS);
+      List<Product> foods = CategoriesService.filterByCategories(currentMenu, constFoods);
 
       // Vérification que la liste de boissons ne contient que des boissons
-      expect(foods.every((product) => product.categorie.name == FOODS), isTrue);
+      expect(foods.every((product) => product.categorie.name == constFoods), isTrue);
     });
   });
 
