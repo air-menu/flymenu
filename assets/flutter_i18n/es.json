@@ -3,7 +3,10 @@
         "title": "Idioma",
         "choose_language": "Elige tu idioma",
         "french": "Francés",
+        "fr": "Francés",
         "english": "Inglés",
-        "spanish": "Español"
+        "en": "Inglés",
+        "spanish": "Español",
+        "es": "Español"
     }
 }
