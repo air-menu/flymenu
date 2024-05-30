@@ -10,6 +10,10 @@ class Couleur {
   static const darkGray = Color(0xFF333333);
   static const white = Colors.white;
   static const darkwhite = Color(0xFFE5E5E5);
+  static const orange = Color(0xFFFFA62B);
+  static const green = Color(0xFF5CB85C);
+  static const offWhite = Color(0xFFEAF0FC);
+
 }
 
 class Themes {

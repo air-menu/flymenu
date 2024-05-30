@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "101723349324",
+    "project_id": "airmenu-4560b",
+    "storage_bucket": "airmenu-4560b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:101723349324:android:01b39c2013556ae3a46fe9",
+        "android_client_info": {
+          "package_name": "com.airmenu.flymenu"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBugvZ6FRSe1ItdPw5luybXoNhliUex0m4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
