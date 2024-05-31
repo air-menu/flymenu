@@ -11,8 +11,10 @@ class Couleur {
   static const white = Colors.white;
   static const darkwhite = Color(0xFFE5E5E5);
   static const orange = Color(0xFFFFA62B);
+  static const darkorange = Color.fromARGB(255, 209, 118, 7);
   static const green = Color(0xFF5CB85C);
   static const offWhite = Color(0xFFEAF0FC);
+  static const lightbrown = Color(0xFFE5E5E5);
 
 }
 
@@ -28,8 +30,9 @@ class Themes {
       secondary: Couleur.blue,
       onSecondary: Couleur.white,
       surface: Couleur.gray,
-      onSurface: Couleur.white,
+      onSurface: Couleur.black,
       background: Couleur.white,
+      
       onBackground: Couleur.black,
       error: Couleur.red,
       onError: Couleur.white,

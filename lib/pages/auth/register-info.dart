@@ -4,9 +4,9 @@ import 'package:intl/intl.dart';
 import 'package:flymenu/pages/auth/register-info-logic.dart';
 
 class RegisterInfo extends StatefulWidget {
-  final String ?email;
-  final String ?password;
-  final String ?confirmPassword;
+  final String? email;
+  final String? password;
+  final String? confirmPassword;
 
   const RegisterInfo(
       {super.key,
@@ -29,134 +29,117 @@ class _RegisterInfo extends State<RegisterInfo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Row(
-        children: [
-          Expanded(
-            child: Container(
-              padding: const EdgeInsets.all(20),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  Text(
-                    FlutterI18n.translate(context, 'message.register_info'),
-                    style: const TextStyle(
-                      fontSize: 42,
-                      fontWeight: FontWeight.bold,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  Text(
-                    FlutterI18n.translate(context, 'application.name'),
-                    style: const TextStyle(
-                      fontSize: 52,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  Text(
-                    FlutterI18n.translate(
-                        context, 'message.register_info_description'),
-                    style: const TextStyle(
-                      fontSize: 22,
-                      fontWeight: FontWeight.normal,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                ],
+      body: Center(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(20), // Adjusted padding
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                FlutterI18n.translate(context, 'application.name'),
+                style: const TextStyle(
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-            ),
-          ),
-          Expanded(
-            child: Container(
-              padding: const EdgeInsets.all(80),
-              child: Column(
+              const SizedBox(height: 10),
+              Text(
+                FlutterI18n.translate(context, 'message.register_info'),
+                style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+                textAlign: TextAlign.center,
+              ),
+
+              const SizedBox(height: 40),
+              TextField(
+                decoration: InputDecoration(
+                  border: const OutlineInputBorder(),
+                  labelText: '${FlutterI18n.translate(context, 'user.lastname')}*',
+                ),
+                controller: _lastname,
+              ),
+              const SizedBox(height: 20),
+              TextField(
+                decoration: InputDecoration(
+                  border: const OutlineInputBorder(),
+                  labelText: '${FlutterI18n.translate(context, 'user.firstname')}*',
+                ),
+                controller: _firstname,
+              ),
+              const SizedBox(height: 20),
+              TextField(
+                decoration: InputDecoration(
+                  border: const OutlineInputBorder(),
+                  labelText: '${FlutterI18n.translate(context, 'user.nickname')}*',
+                ),
+                controller: _nickname,
+              ),
+              const SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () {
+                  showDatePicker(
+                    context: context,
+                    initialDate: _birthdate,
+                    firstDate: DateTime(1924),
+                    lastDate: DateTime.now(),
+                    helpText: FlutterI18n.translate(
+                        context, 'message.select_birthdate'),
+                    cancelText: FlutterI18n.translate(context, 'button.cancel'),
+                    confirmText: FlutterI18n.translate(context, 'button.confirm'),
+                  ).then((value) {
+                    setState(() {
+                      _birthdate = value!;
+                    });
+                    DateFormat('dd/MM/yyyy').format(_birthdate);
+                  });
+                },
+                child: Text(
+                    '${FlutterI18n.translate(context, 'user.birthdate')} ${_birthdate.day}/${_birthdate.month}/${_birthdate.year}'),
+              ),
+              const SizedBox(height: 20),
+              Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  TextField(
-                    decoration: InputDecoration(
-                      border: const OutlineInputBorder(),
-                      labelText:
-                          FlutterI18n.translate(context, 'user.lastname'),
-                    ),
-                    controller: _lastname,
-                  ),
-                  const SizedBox(height: 20),
-                  TextField(
-                    decoration: InputDecoration(
-                      border: const OutlineInputBorder(),
-                      labelText:
-                          FlutterI18n.translate(context, 'user.firstname'),
-                    ),
-                    controller: _firstname,
-                  ),
-                  const SizedBox(height: 20),
-                  TextField(
-                    decoration: InputDecoration(
-                      border: const OutlineInputBorder(),
-                      labelText:
-                          FlutterI18n.translate(context, 'user.nickname'),
-                    ),
-                    controller: _nickname,
-                  ),
-                  const SizedBox(height: 20),
+                children: [
                   ElevatedButton(
                     onPressed: () {
-                      showDatePicker(
-                        context: context,
-                        initialDate: _birthdate,
-                        firstDate: DateTime(1924),
-                        lastDate: DateTime.now(),
-                        helpText:
-                            FlutterI18n.translate(context, 'message.select_birthdate'),
-                        cancelText:
-                            FlutterI18n.translate(context, 'button.cancel'),
-                        confirmText: FlutterI18n.translate(context, 'button.confirm'),
-                      ).then((value) {
-                        setState(() {
-                          _birthdate = value!;
-                        });
-                        DateFormat('dd/MM/yyyy').format(_birthdate);
-                      });
+                      Navigator.pop(context);
+                    },
+                    child: Text(FlutterI18n.translate(context, 'button.back')),
+                  ),
+                  const SizedBox(width: 10),
+                  ElevatedButton(
+                    onPressed: () {
+                      _registerLogic.onRegisterUser(
+                          email: widget.email!,
+                          password: widget.password!,
+                          confirmPassword: widget.confirmPassword!,
+                          nickname: _nickname.text,
+                          lastname: _lastname.text,
+                          firstname: _firstname.text,
+                          birthdate: DateFormat('dd/MM/yyyy').format(_birthdate),
+                          context: context);
                     },
                     child: Text(
-                        '${FlutterI18n.translate(context, 'user.birthdate')}{_birthdate.day}/${_birthdate.month}/${_birthdate.year}'),
-                  ),
-                  const SizedBox(height: 20),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      ElevatedButton(
-                        onPressed: () {
-                          _registerLogic.onRegisterUser(
-                              email: widget.email!,
-                              password: widget.password!,
-                              confirmPassword: widget.confirmPassword!,
-                              nickname: _nickname.text,
-                              lastname: _lastname.text,
-                              firstname: _firstname.text,
-                              birthdate:
-                                  DateFormat('dd/MM/yyyy').format(_birthdate),
-                              context: context);
-                        },
-                        child: Text(
-                            FlutterI18n.translate(context, 'button.validate')),
-                      ),
-                      const SizedBox(width: 10),
-                      ElevatedButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        child: Text(FlutterI18n.translate(context, 'button.back')),
-                      ),
-                    ],
+                        FlutterI18n.translate(context, 'button.validate')),
                   ),
                 ],
               ),
-            ),
+              const SizedBox(height: 20),
+              Text(
+                FlutterI18n.translate(
+                    context, 'message.register_info_description'),
+                style: const TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.normal,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }

@@ -7,14 +7,14 @@ import 'package:flymenu/pages/auth/register.dart';
 import 'package:flymenu/components/language/dropdown.dart';
 
 
-class LoginMobileView extends StatefulWidget {
-  const LoginMobileView({super.key});
+class LoginView extends StatefulWidget {
+  const LoginView({super.key});
 
   @override
-  State<LoginMobileView> createState() => _LoginMobileView();
+  State<LoginView> createState() => _LoginView();
 }
 
-class _LoginMobileView extends State<LoginMobileView> {
+class _LoginView extends State<LoginView> {
   bool _isPasswordVisible = false;
   final TextEditingController _password = TextEditingController();
   final TextEditingController _email = TextEditingController();

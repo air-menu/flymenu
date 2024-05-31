@@ -1,23 +1,26 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flymenu/constants/user.constant.dart';
 
 class UserModel {
-  final String? uid;
+  final String uid;
   final String email;
-  final String? password;
-  final String? lastname;
-  final String? firstname;
-  final String? birthdate;
-  final String? nickname;
+  final String password;
+  final String lastname;
+  final String firstname;
+  final String birthdate;
+  final String nickname;
+  final bool accountregistered;
 
   UserModel({
-    this.lastname,
-    this.firstname,
+    this.lastname ='',
+    this.firstname= '',
     required this.email,
-    this.password,
-    this.birthdate,
-    this.nickname,
-    this.uid,
+    this.password ='',
+    this.birthdate = '',
+    this.nickname = '',
+    this.uid = '',
+    this.accountregistered = false,
   });
 
   Map<String, dynamic> toMap() {
@@ -28,6 +31,7 @@ class UserModel {
       UserConstant.firstname: firstname,
       UserConstant.birthdate: birthdate,
       UserConstant.nickname: nickname,
+      UserConstant.accountregistered: accountregistered,
     };
   }
 
@@ -38,6 +42,7 @@ class UserModel {
         UserConstant.firstname: firstname,
         UserConstant.birthdate: birthdate,
         UserConstant.nickname: nickname,
+        UserConstant.accountregistered: accountregistered,
       };
 
   factory UserModel.fromMap(Map<String, dynamic> map) {
@@ -49,6 +54,7 @@ class UserModel {
       lastname: map[UserConstant.lastname] ?? '',
       birthdate: map[UserConstant.birthdate] ?? '',
       nickname: map[UserConstant.nickname] ?? '',
+      accountregistered: map[UserConstant.accountregistered] ?? false,
     );
   }
 
@@ -62,6 +68,7 @@ class UserModel {
       password: data[UserConstant.password],
       birthdate: data[UserConstant.birthdate],
       nickname: data[UserConstant.nickname],
+      accountregistered: data[UserConstant.accountregistered],
     );
   }
 
@@ -69,6 +76,6 @@ class UserModel {
   String toString() {
     return 'UserModel{uid: $uid, email: $email, password: $password, '
         'lastname: $lastname, firstname: $firstname, '
-        'birthdate: $birthdate, nickname: $nickname}';
+        'birthdate: $birthdate, nickname: $nickname, accountregistered: $accountregistered}';
   }
 }

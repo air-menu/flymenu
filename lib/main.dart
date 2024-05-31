@@ -2,11 +2,11 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flymenu/styles.dart';
+import 'package:flymenu/utils/styles.dart';
 import 'package:flymenu/services/auth/user_auth.dart';
 import 'package:flymenu/components/navbar/navbar.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flymenu/firebase_options.dart';
+import 'package:flymenu/services/firebase_options.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,7 +25,7 @@ class MainView extends StatefulWidget {
 }
 
 class _MainViewState extends State<MainView> {
-  ThemeData _currentTheme = Themes.darkTheme;
+  ThemeData _currentTheme = Themes.lightTheme;
 
   void _toggleTheme() {
     setState(() {
@@ -65,21 +65,21 @@ class _MainViewState extends State<MainView> {
       // Changer le thème actuel ici
       theme: _currentTheme,
       // Ajouter un bouton pour changer le thème
-      builder: (context, child) {
-        return Scaffold(
-          appBar: AppBar(
-            actions: [
-              IconButton(
-                icon: Icon(_currentTheme.brightness == Brightness.dark
-                    ? Icons.wb_sunny
-                    : Icons.nights_stay),
-                onPressed: _toggleTheme,
-              )
-            ],
-          ),
-          body: child,
-        );
-      },
+      // builder: (context, child) {
+      //   return Scaffold(
+      //     appBar: AppBar(
+      //       actions: [
+      //         IconButton(
+      //           icon: Icon(_currentTheme.brightness == Brightness.dark
+      //               ? Icons.wb_sunny
+      //               : Icons.nights_stay),
+      //           onPressed: _toggleTheme,
+      //         )
+      //       ],
+      //     ),
+      //     body: child,
+      //   );
+      // },
     );
   }
 }

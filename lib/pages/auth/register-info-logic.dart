@@ -34,7 +34,7 @@ class RegisterInfoLogic {
     DateTime tenYearsAgo = now.subtract(const Duration(days: 365 * minAge));
     DateTime birthdateDate = DateFormat('dd/MM/yyyy').parse(birthdate);
 
-    if (birthdateDate.isAfter(now) || birthdateDate.isBefore(tenYearsAgo)) {
+    if (birthdateDate.isAfter(now) || birthdateDate.isAfter(tenYearsAgo)) {
       _errorService.handleErrorWithMessage(context,
           message: 'Date de naissance invalide');
       return;
