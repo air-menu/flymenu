@@ -12,14 +12,7 @@ class ElementListState extends State<ElementListWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 375,
       height: 137,
-      padding: const EdgeInsets.only(
-        top: 16,
-        left: 32,
-        right: 32,
-        bottom: 24,
-      ),
       decoration: const BoxDecoration(color: ColorConstant.white),
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -127,7 +120,7 @@ class ElementListState extends State<ElementListWidget> {
                   height: 64,
                   decoration: ShapeDecoration(
                     image: const DecorationImage(
-                      image: NetworkImage("https://via.placeholder.com/64x64"),
+                      image: NetworkImage("https://simon-simone.fr/5413-large_default/lot-de-6-verres-a-biere-cabernet-chef-sommelier.jpg"),
                       fit: BoxFit.fill,
                     ),
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
