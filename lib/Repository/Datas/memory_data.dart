@@ -10,9 +10,9 @@ class MemoryData {
   MemoryData(){
     var random = Random();
 
-    var c1 = Categorie(name: 'Foods');
-    var c2 = Categorie(name: 'Drinks');
-    var c3 = Categorie(name: 'Alcool');
+    var c1 = Categorie(id: '1', name: 'Foods');
+    var c2 = Categorie(id: '2',name: 'Drinks');
+    var c3 = Categorie(id: '3',name: 'Alcool');
 
     categories.addAll([c1,c2,c3]);
 

@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flymenu/Model/Categorie.dart';
+import 'package:flymenu/Model/categorie.dart';
 import 'package:flymenu/Repository/interface_repository.dart';
 
 class CategorieRepository implements IRepository<Categorie> {
@@ -46,7 +46,7 @@ class CategorieRepository implements IRepository<Categorie> {
   @override
   Future<void> insert(Categorie item) async {
     try {
-      await _firestore.collection(collectionName).add(item.toMap());
+      await _firestore.collection(collectionName).doc(item.id).set(item.toMap());
     }
     catch (e) {
       throw Exception('Error, the Categorie can t be added, error : $e');

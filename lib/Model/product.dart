@@ -34,7 +34,7 @@ class Product {
       price: (data['price'] ?? 0.0).toDouble(),
       imagePath: data['imagePath'] ?? '',
       isHappyHour: data['isHappyHour'] ?? false,
-      categorie: Categorie.fromFirestore(doc),
+      categorie: Categorie.fromFirestore(doc, isFromObject: true),
     );
   }
 

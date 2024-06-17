@@ -7,10 +7,16 @@ class Categorie {
 
   Categorie({this.id, required this.name});
 
-  factory Categorie.fromFirestore(DocumentSnapshot doc) {
+  factory Categorie.fromFirestore(DocumentSnapshot doc, {bool isFromObject = false}) {
     Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
-    var result = data['categorie'];
-    return Categorie(id: result['id'], name: result['name']);
+
+    if(isFromObject){
+      var result = data['categorie'];
+      return Categorie(id: result['id'], name: result['name']);
+    }
+    else{
+      return Categorie(id: data['id'], name: data['name']);
+    }
   }
 
   Map<String, dynamic> toMap() {
