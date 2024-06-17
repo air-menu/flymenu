@@ -17,6 +17,7 @@ class MemoryData {
     categories.addAll([c1,c2,c3]);
 
     Product p1 = Product(
+      id: '120',
       title: 'Spaghettis bolognèse',
       description: 'De bonne pâtes italiennes',
       price: 10.0,
@@ -26,6 +27,7 @@ class MemoryData {
     );
 
     Product p2 = Product(
+      id: '121',
       title: 'Coca cola',
       description: 'Bon soda',
       price: 15.0,
@@ -35,6 +37,7 @@ class MemoryData {
     );
 
     Product p3 = Product(
+      id: '122',
       title: 'Vodka',
       description: 'C chaud',
       price: 20.0,
@@ -44,6 +47,7 @@ class MemoryData {
     );
 
     Product p4 = Product(
+      id: '123',
       title: 'Pizza bonnes',
       description: 'Bonnes Pizza',
       price: 25.0,
@@ -53,6 +57,7 @@ class MemoryData {
     );
 
     Product p5 = Product(
+      id:'124',
       title: 'Oasis',
       description: 'C est bon',
       price: 30.0,
