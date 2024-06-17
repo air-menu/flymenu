@@ -1,10 +1,7 @@
 import 'dart:math';
 
 import 'package:fake_cloud_firestore/fake_cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flymenu/Model/Categorie.dart';
-import 'package:flymenu/Model/categorie.dart';
 import 'package:flymenu/Model/product.dart';
 import 'package:flymenu/Repository/Datas/memory_data.dart';
 import 'package:flymenu/Repository/categorie_repository.dart';
