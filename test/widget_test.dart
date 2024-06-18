@@ -19,10 +19,10 @@ const String constDrink = 'Drinks';
 const String constFoods = 'Foods';
 
 List<Categorie> categories = [
-  Categorie(name: 'Starters'),
-  Categorie(name: constFoods),
-  Categorie(name: 'Desserts'),
-  Categorie(name: constDrink),
+  Categorie(id: '1' ,name: 'Starters'),
+  Categorie(id: '2', name: constFoods),
+  Categorie(id: '3', name: 'Desserts'),
+  Categorie(id: '4', name: constDrink),
 ];
 
 void main() {
@@ -48,6 +48,7 @@ void main() {
   for (int i = 0; i < 20; i++) {
     products.add(
       Product(
+        id: '1',
         title: 'Product ${i + 1}',
         description: 'Description for product ${i + 1}',
         price: 5.0 + random.nextDouble() * 20.0,
@@ -62,6 +63,7 @@ void main() {
   for (int i = 0; i < 10; i++) {
     menus.add(
       FoodMenu(
+        id: '1',
         menuCategories: categories,
         products: products,
       ),
@@ -71,6 +73,7 @@ void main() {
   List<Restaurant> restaurants = [];
   restaurants.add(
       Restaurant(
+          id: '1',
           name: 'Restaurant le petit gibier',
           address: '124 chemin de la croisade',
           isOpen: true,

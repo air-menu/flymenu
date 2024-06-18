@@ -13,7 +13,7 @@ class CategorieLabelState extends State<CategorieLabel> {
   bool _isSelected = true;
 
   Color _colorText = Colors.black;
-  Color _colorBackground = Colors.grey;
+  Color _colorBackground = Colors.white;
   Color _colorBorder = Colors.transparent;
   double _width = 0;
 
@@ -41,8 +41,7 @@ class CategorieLabelState extends State<CategorieLabel> {
   @override
   Widget build(BuildContext context){
     return Container(
-      height: 41,
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      margin: const EdgeInsets.all(15),
       decoration: ShapeDecoration(
           shape: RoundedRectangleBorder(
             side: BorderSide(width: _width, color: _colorBorder),
@@ -50,20 +49,14 @@ class CategorieLabelState extends State<CategorieLabel> {
           ),
           color: _colorBackground
       ),
-      child: IntrinsicWidth(
-        child: GestureDetector(
-          onTap: toggleSelection,
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              AnimatedDefaultTextStyle(
-                  style: TextStyle(color: _colorText, fontSize: 14),
-                  duration: const Duration(seconds: 1),
-                  child: Text(widget.label)
-              ),
-            ],
+      child: GestureDetector(
+        onTap: toggleSelection,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 15),
+          child: AnimatedDefaultTextStyle(
+              style: TextStyle(color: _colorText, fontSize: 16),
+              duration: const Duration(seconds: 1),
+              child: Text(widget.label)
           ),
         ),
       ),
