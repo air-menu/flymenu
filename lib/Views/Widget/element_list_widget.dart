@@ -1,8 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flymenu/Helper/colors_constante.dart';
+import 'package:flymenu/Model/product.dart';
 
 class ElementListWidget extends StatefulWidget {
-  const ElementListWidget({super.key});
+  const ElementListWidget({super.key, required this.product});
+
+  final Product product;
 
   @override
   ElementListState createState() => ElementListState();
@@ -31,7 +34,7 @@ class ElementListState extends State<ElementListWidget> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Column(
+                    Column(
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -39,8 +42,8 @@ class ElementListState extends State<ElementListWidget> {
                         SizedBox(
                           width: 215,
                           child: Text(
-                            'Grim Blonde',
-                            style: TextStyle(
+                            widget.product.title,
+                            style: const TextStyle(
                               color: Color(0xFF30363D),
                               fontSize: 16,
                               fontFamily: 'Inter',
@@ -50,12 +53,12 @@ class ElementListState extends State<ElementListWidget> {
                             ),
                           ),
                         ),
-                        SizedBox(height: 8),
+                        const SizedBox(height: 8),
                         SizedBox(
                           width: 215,
                           child: Text(
-                            'Lorem ipsum sit dolore amet et saepe adrium venit.',
-                            style: TextStyle(
+                            widget.product.description,
+                            style: const TextStyle(
                               color: Color(0x7F30363D),
                               fontSize: 14,
                               fontFamily: 'Inter',
@@ -73,9 +76,9 @@ class ElementListState extends State<ElementListWidget> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        const Text(
-                          '4,50 € - 12,00 €',
-                          style: TextStyle(
+                        Text(
+                          "${widget.product.price.toString()} €",
+                          style: const TextStyle(
                             color: Color(0xFF027FFF),
                             fontSize: 14,
                             fontFamily: 'Inter',
@@ -85,29 +88,32 @@ class ElementListState extends State<ElementListWidget> {
                           ),
                         ),
                         const SizedBox(width: 8),
-                        Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                          decoration: ShapeDecoration(
-                            color: const Color(0x198876FE),
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-                          ),
-                          child: const Row(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Happy hour',
-                                style: TextStyle(
-                                  color: Color(0xFF8876FE),
-                                  fontSize: 12,
-                                  fontFamily: 'Inter',
-                                  fontWeight: FontWeight.w700,
-                                  height: 0,
-                                  letterSpacing: -0.24,
+                        Visibility(
+                          visible: widget.product.isHappyHour,
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                            decoration: ShapeDecoration(
+                              color: const Color(0x198876FE),
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                            ),
+                            child: const Row(
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Happy hour',
+                                  style: TextStyle(
+                                    color: Color(0xFF8876FE),
+                                    fontSize: 12,
+                                    fontFamily: 'Inter',
+                                    fontWeight: FontWeight.w700,
+                                    height: 0,
+                                    letterSpacing: -0.24,
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       ],
@@ -119,8 +125,8 @@ class ElementListState extends State<ElementListWidget> {
                   width: 64,
                   height: 64,
                   decoration: ShapeDecoration(
-                    image: const DecorationImage(
-                      image: NetworkImage("https://simon-simone.fr/5413-large_default/lot-de-6-verres-a-biere-cabernet-chef-sommelier.jpg"),
+                    image: DecorationImage(
+                      image: NetworkImage(widget.product.imagePath),
                       fit: BoxFit.fill,
                     ),
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),

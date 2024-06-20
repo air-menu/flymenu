@@ -2,11 +2,16 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flymenu/ViewModel/categories_view_model.dart';
+import 'package:flymenu/ViewModel/menu_viewmodel.dart';
+import 'package:flymenu/ViewModel/products_view_model.dart';
+import 'package:flymenu/Views/menu_widget.dart';
 import 'package:flymenu/styles.dart';
 import 'package:flymenu/services/auth/user_auth.dart';
 import 'package:flymenu/components/navbar/navbar.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flymenu/firebase_options.dart';
+import 'package:provider/provider.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -94,6 +99,12 @@ class MainContentView extends StatefulWidget {
 class _MainContentViewState extends State<MainContentView> {
   @override
   Widget build(BuildContext context) {
-    return const Navbar();
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => CategoriesViewModel()),
+        ChangeNotifierProvider(create: (context) => ProductsViewModel())
+      ],
+      child: const MenuWidget()
+    );
   }
 }

@@ -1,26 +1,14 @@
-import 'package:flutter/material.dart';
-
-import '../Model/product.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flymenu/Helper/observable_collection.dart';
+import 'package:flymenu/Model/product.dart';
+import 'package:flymenu/Repository/Datas/memory_data.dart';
 
 class ProductsViewModel extends ChangeNotifier {
-  List<Product> _products = [];
 
-  List<Product> get products => _products;
+  ObservableCollection<Product> products = ObservableCollection<Product>();
 
-  void addProduct(Product item){
-    _products.add(item);
-    notifyListeners();
+  ProductsViewModel(){
+    final MemoryData memoryData = MemoryData();
+    products.addAll(memoryData.products);
   }
-
-  void removeProduct(Product item){
-    _products.remove(item);
-    notifyListeners();
-  }
-
-  void updateProduct(Product newProduct, Product oldProduct){
-    final index = _products.indexOf(oldProduct);
-    _products[index] = newProduct;
-    notifyListeners();
-  }
-
 }

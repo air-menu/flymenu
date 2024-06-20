@@ -4,8 +4,9 @@ class Categorie {
 
   String? id;
   String name;
+  late bool isSelected;
 
-  Categorie({this.id, required this.name});
+  Categorie({this.id, required this.name, this.isSelected = false});
 
   factory Categorie.fromFirestore(DocumentSnapshot doc, {bool isFromObject = false}) {
     Map<String, dynamic> data = doc.data() as Map<String, dynamic>;

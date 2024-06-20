@@ -1,18 +1,30 @@
+import 'package:darq/darq.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flymenu/Helper/colors_constante.dart';
+import 'package:flymenu/Model/categorie.dart';
+import 'package:flymenu/ViewModel/categories_view_model.dart';
+import 'package:flymenu/ViewModel/menu_viewmodel.dart';
+import 'package:flymenu/ViewModel/products_view_model.dart';
 import 'package:flymenu/Views/Widget/categorie_label.dart';
 import 'package:flymenu/Views/Widget/element_list_widget.dart';
+import 'package:provider/provider.dart';
 
 import '../Model/menu.dart';
 import '../Repository/Datas/memory_data.dart';
 
-class MenuWidget extends StatelessWidget {
+class MenuWidget extends StatefulWidget {
 
-  MenuWidget({super.key});
+  const MenuWidget({super.key});
 
+  @override
+  State<MenuWidget> createState() => _MenuWidgetState();
+}
+
+class _MenuWidgetState extends State<MenuWidget> {
   final MemoryData memoryData = MemoryData();
 
   @override
@@ -70,20 +82,38 @@ class MenuWidget extends StatelessWidget {
                             letterSpacing: -0.28,
                           ),
                         ),
-                        SizedBox(
-                          height: 100,
-                          child: ListView.builder(
-                            shrinkWrap: true,
-                            scrollDirection: Axis.horizontal,
-                            padding: const EdgeInsets.symmetric(vertical: 10),
-                            itemCount: memoryData.categories.length,
-                            itemBuilder: (BuildContext context, int index) {
-                              return CategorieLabel(label: memoryData.categories[index].name);
-                            },
-                          ),
-                        ),
-                        const Text("Bières"),
-                      ],
+                        Consumer<CategoriesViewModel>(
+                            builder: (context, viewModel, child){
+                              return Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                SizedBox(
+                                    height: 100,
+                                    child:
+                                      ListView.builder(
+                                        shrinkWrap: true,
+                                        scrollDirection: Axis.horizontal,
+                                        padding: const EdgeInsets.symmetric(vertical: 10),
+                                        itemCount: viewModel.categories.collection.length,
+                                        itemBuilder: (BuildContext context, int index) {
+                                          return
+                                            CategorieLabel(
+                                                model: viewModel.categories.collection[index],
+                                                onTap: () {
+                                                  viewModel.onItemChange(index);
+                                                });
+                                        },
+                                    ),
+                                  ),
+                                  Text(
+                                    viewModel.categorieText,
+                                    style: const TextStyle(color: Colors.black87),
+                                  ),
+                                ],
+                              );
+                            }
+                          )
+                        ],
                     ),
                   ),
                 ),
@@ -95,19 +125,22 @@ class MenuWidget extends StatelessWidget {
                     ),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-                      child: ListView.builder(
-                        itemCount: memoryData.products.length,
-                        itemBuilder: (BuildContext context, int index){
-                          return const ElementListWidget();
-                        },
+                      child: Consumer<ProductsViewModel>(
+                        builder: (context, viewModel, child) {
+                          return ListView.builder(
+                            itemCount: viewModel.products.collection.length,
+                            itemBuilder: (BuildContext context, int index){
+                              return ElementListWidget(product: viewModel.products.collection[index]);
+                            },
+                          );
+                        }
                       ),
                     ),
                   ),
                 ),
-            ],
-        )
-      )
+              ],
+            )
+        ),
     );
   }
-
 }
