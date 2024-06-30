@@ -19,7 +19,7 @@ const String constDrink = 'Drinks';
 const String constFoods = 'Foods';
 
 List<Categorie> categories = [
-  Categorie(id: '1' ,name: 'Starters', isSelected: true),
+  Categorie(id: '1' ,name: 'Starters'),
   Categorie(id: '2', name: constFoods),
   Categorie(id: '3', name: 'Desserts'),
   Categorie(id: '4', name: constDrink),
@@ -42,6 +42,8 @@ void main() {
     expect(find.text('0'), findsNothing);
     expect(find.text('1'), findsOneWidget);
   });*/
+
+  categories.first.isSelected = true;
 
   List<Product> products = [];
   Random random = Random();

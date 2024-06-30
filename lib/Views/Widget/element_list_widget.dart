@@ -1,6 +1,9 @@
+import 'package:darq/darq.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flymenu/Helper/colors_constante.dart';
 import 'package:flymenu/Model/product.dart';
+import 'package:flymenu/Views/Widget/happy_hour_widget.dart';
 
 class ElementListWidget extends StatefulWidget {
   const ElementListWidget({super.key, required this.product});
@@ -43,14 +46,7 @@ class ElementListState extends State<ElementListWidget> {
                           width: 215,
                           child: Text(
                             widget.product.title,
-                            style: const TextStyle(
-                              color: Color(0xFF30363D),
-                              fontSize: 16,
-                              fontFamily: 'Inter',
-                              fontWeight: FontWeight.w700,
-                              height: 0,
-                              letterSpacing: -0.32,
-                            ),
+                            style: Theme.of(context).primaryTextTheme.labelMedium
                           ),
                         ),
                         const SizedBox(height: 8),
@@ -58,14 +54,7 @@ class ElementListState extends State<ElementListWidget> {
                           width: 215,
                           child: Text(
                             widget.product.description,
-                            style: const TextStyle(
-                              color: Color(0x7F30363D),
-                              fontSize: 14,
-                              fontFamily: 'Inter',
-                              fontWeight: FontWeight.w700,
-                              height: 0,
-                              letterSpacing: -0.28,
-                            ),
+                            style: Theme.of(context).primaryTextTheme.bodySmall,
                           ),
                         ),
                       ],
@@ -78,44 +67,10 @@ class ElementListState extends State<ElementListWidget> {
                       children: [
                         Text(
                           "${widget.product.price.toString()} €",
-                          style: const TextStyle(
-                            color: Color(0xFF027FFF),
-                            fontSize: 14,
-                            fontFamily: 'Inter',
-                            fontWeight: FontWeight.w700,
-                            height: 0,
-                            letterSpacing: -0.28,
-                          ),
+                          style: Theme.of(context).primaryTextTheme.labelMedium,
                         ),
                         const SizedBox(width: 8),
-                        Visibility(
-                          visible: widget.product.isHappyHour,
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                            decoration: ShapeDecoration(
-                              color: const Color(0x198876FE),
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-                            ),
-                            child: const Row(
-                              mainAxisSize: MainAxisSize.min,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Happy hour',
-                                  style: TextStyle(
-                                    color: Color(0xFF8876FE),
-                                    fontSize: 12,
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w700,
-                                    height: 0,
-                                    letterSpacing: -0.24,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
+                        HappyHourWidget(isVisible: widget.product.isHappyHour),
                       ],
                     ),
                   ],

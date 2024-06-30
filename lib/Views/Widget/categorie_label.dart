@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flymenu/Helper/colors_constante.dart';
-import 'package:flymenu/ViewModel/categories_view_model.dart';
-import 'package:provider/provider.dart';
+import 'package:flymenu/Model/selectable.dart';
 
 import '../../Model/categorie.dart';
 
-class CategorieLabel extends StatefulWidget {
+class SelectableLabel extends StatefulWidget {
 
-  const CategorieLabel({super.key, required this.model, required this.onTap});
-  final Categorie model;
-  final VoidCallback onTap;
+  const SelectableLabel({super.key, required this.selectable, this.onTap});
+  final Selectable selectable;
+  final VoidCallback? onTap;
   @override
-  CategorieLabelState createState() => CategorieLabelState();
+  SelectableLabelState createState() => SelectableLabelState();
 }
 
-class CategorieLabelState extends State<CategorieLabel> {
+class SelectableLabelState extends State<SelectableLabel> {
 
   @override
   Widget build(BuildContext context){
@@ -25,21 +24,21 @@ class CategorieLabelState extends State<CategorieLabel> {
         decoration: ShapeDecoration(
             shape: RoundedRectangleBorder(
               side: BorderSide(
-                  width: widget.model.isSelected ? 0 : 1,
-                  color: widget.model.isSelected ? Colors.transparent : ColorConstant.gray),
+                  width: widget.selectable.isSelected ? 0 : 1,
+                  color: widget.selectable.isSelected ? Colors.transparent : ColorConstant.gray),
               borderRadius: BorderRadius.circular(100),
             ),
-            color: widget.model.isSelected ? ColorConstant.lightMaroon : ColorConstant.white
+            color: widget.selectable.isSelected ? ColorConstant.lightMaroon : ColorConstant.white
         ),
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 15),
           child: AnimatedDefaultTextStyle(
               style: TextStyle(
-                  color: widget.model.isSelected ? ColorConstant.red : ColorConstant.gray,
+                  color: widget.selectable.isSelected ? ColorConstant.red : ColorConstant.gray,
                   fontSize: 16
               ),
               duration: const Duration(seconds: 1),
-              child: Text(widget.model.name)
+              child: Text(widget.selectable.name)
           ),
         ),
       ),

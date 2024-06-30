@@ -1,12 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flymenu/Model/selectable.dart';
 
-class Categorie {
+class Categorie extends Selectable {
 
   String? id;
-  String name;
-  late bool isSelected;
 
-  Categorie({this.id, required this.name, this.isSelected = false});
+  Categorie({this.id, required String name}) {
+    super.name = name;
+  }
 
   factory Categorie.fromFirestore(DocumentSnapshot doc, {bool isFromObject = false}) {
     Map<String, dynamic> data = doc.data() as Map<String, dynamic>;

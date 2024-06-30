@@ -1,19 +1,10 @@
-import 'package:darq/darq.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flymenu/Helper/colors_constante.dart';
-import 'package:flymenu/Model/categorie.dart';
 import 'package:flymenu/ViewModel/categories_view_model.dart';
-import 'package:flymenu/ViewModel/menu_viewmodel.dart';
 import 'package:flymenu/ViewModel/products_view_model.dart';
 import 'package:flymenu/Views/Widget/categorie_label.dart';
 import 'package:flymenu/Views/Widget/element_list_widget.dart';
+import 'package:flymenu/Views/Widget/product_widget.dart';
 import 'package:provider/provider.dart';
-
-import '../Model/menu.dart';
 import '../Repository/Datas/memory_data.dart';
 
 class MenuWidget extends StatefulWidget {
@@ -30,7 +21,7 @@ class _MenuWidgetState extends State<MenuWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor:  const Color(0xFFF4F5F5),
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         body: SafeArea(
             child: Column(
               children: [
@@ -42,45 +33,29 @@ class _MenuWidgetState extends State<MenuWidget> {
                         image: NetworkImage("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiGsqX_Vkvwmiy5V7GowCVKpcFTHSLebHAmA&s"),
                         fit: BoxFit.fill,
                       ),
-                      color: Color(0x7F30363D),
                     ),
                   ),
                 ),
                 Container(
                   decoration: BoxDecoration(
-                    color: const Color(0xFFF4F5F5),
-                    border: Border.all(color: const Color(0x00000000)),
+                    color: Theme.of(context).colorScheme.tertiary,
                   ),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Padding(
-                          padding: EdgeInsets.symmetric(vertical: 20),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 20),
                           child: Text(
                             'Menu',
-                            style: TextStyle(
-                              color: Color(0xFF30363D),
-                              fontSize: 24,
-                              fontFamily: 'Inter',
-                              fontWeight: FontWeight.w700,
-                              height: 0,
-                              letterSpacing: -0.48,
-                            ),
+                            style: Theme.of(context).primaryTextTheme.titleLarge,
                           ),
                         ),
-                        const Text(
+                        Text(
                           'Lorem ipsum sit dolore amet et saepe adrium venit. Lorem ipsum sit dolore amet et saepe adrium venit.',
                           softWrap: true,
-                          style: TextStyle(
-                            color: Color(0x7F30363D),
-                            fontSize: 14,
-                            fontFamily: 'Inter',
-                            fontWeight: FontWeight.w700,
-                            height: 0,
-                            letterSpacing: -0.28,
-                          ),
+                          style: Theme.of(context).primaryTextTheme.bodySmall,
                         ),
                         Consumer<CategoriesViewModel>(
                             builder: (context, viewModel, child){
@@ -97,8 +72,8 @@ class _MenuWidgetState extends State<MenuWidget> {
                                         itemCount: viewModel.categories.collection.length,
                                         itemBuilder: (BuildContext context, int index) {
                                           return
-                                            CategorieLabel(
-                                                model: viewModel.categories.collection[index],
+                                            SelectableLabel(
+                                                selectable: viewModel.categories.collection[index],
                                                 onTap: () {
                                                   viewModel.onItemChange(index);
                                                 });
@@ -107,7 +82,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                                   ),
                                   Text(
                                     viewModel.categorieText,
-                                    style: const TextStyle(color: Colors.black87),
+                                    style: Theme.of(context).primaryTextTheme.labelSmall,
                                   ),
                                 ],
                               );
@@ -119,22 +94,26 @@ class _MenuWidgetState extends State<MenuWidget> {
                 ),
                 Expanded(
                   flex: 5,
-                  child: Container(
-                    decoration: const BoxDecoration(
-                      color: Colors.white
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-                      child: Consumer<ProductsViewModel>(
-                        builder: (context, viewModel, child) {
-                          return ListView.builder(
-                            itemCount: viewModel.products.collection.length,
-                            itemBuilder: (BuildContext context, int index){
-                              return ElementListWidget(product: viewModel.products.collection[index]);
-                            },
-                          );
-                        }
-                      ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                    child: Consumer<ProductsViewModel>(
+                      builder: (context, viewModel, child) {
+                        return ListView.builder(
+                          itemCount: viewModel.products.collection.length,
+                          itemBuilder: (BuildContext context, int index){
+                            var product = viewModel.products.collection[index];
+                            return ListTile(
+                              title: ElementListWidget(product: product),
+                              onTap: () => {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) => ProductWidget(product: product))
+                                  ),
+                              },
+                            );
+                          },
+                        );
+                      }
                     ),
                   ),
                 ),
