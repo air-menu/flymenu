@@ -4,16 +4,17 @@ import 'package:google_fonts/google_fonts.dart';
 
 class Couleur {
   static const blue = Color(0xFF217FB4);
-  static const red = Color(0xFFC50909);
-  static const gray = Color(0xFF666666);
+  static const red = Color(0xFFE94B1B);
+  static const gray = Color(0x1930363D);
   static const black = Colors.black;
-  static const darkGray = Color(0xFF333333);
-  static const white = Colors.white;
+  static const darkGray = Color(0xBF30363D);
+  static const white = Color(0xFFFFFFFF);
   static const darkwhite = Color(0xFFE5E5E5);
   static const orange = Color(0xFFFFA62B);
   static const green = Color(0xFF5CB85C);
   static const offWhite = Color(0xFFEAF0FC);
-
+  static const lightMarron = Color(0x19E94B1B);
+  static const rose = Color(0xFFF4F5F5);
 }
 
 class Themes {
@@ -23,31 +24,56 @@ class Themes {
     textTheme: GoogleFonts.interTextTheme(),
     colorScheme: const ColorScheme(
       brightness: Brightness.light,
-      primary: Couleur.black,
-      onPrimary: Couleur.white,
+      primary: Couleur.white,
+      onPrimary: Couleur.black,
       secondary: Couleur.blue,
       onSecondary: Couleur.white,
-      surface: Couleur.gray,
-      onSurface: Couleur.white,
-      background: Couleur.white,
-      onBackground: Couleur.black,
+      surface: Couleur.white,
+      onSurface: Couleur.black,
       error: Couleur.red,
       onError: Couleur.white,
+      tertiary: Couleur.rose,
+      onTertiary: Couleur.black,
     ),
-    scaffoldBackgroundColor: Couleur.white,
+    scaffoldBackgroundColor: Colors.white,
     visualDensity: VisualDensity.comfortable,
     brightness: Brightness.light,
     appBarTheme: const AppBarTheme(
-      systemOverlayStyle: SystemUiOverlayStyle.dark,
+      systemOverlayStyle: SystemUiOverlayStyle.light,
       backgroundColor: Couleur.white,
       foregroundColor: Couleur.black,
       iconTheme: IconThemeData(color: Color.fromARGB(255, 178, 176, 176)),
     ),
     primaryTextTheme: const TextTheme(
       titleLarge: TextStyle(
-        color: Couleur.darkwhite,
+        color: Couleur.black,
+        fontSize: 24,
+        fontWeight: FontWeight.w700,
+        letterSpacing: -0.48,
+      ),
+      titleMedium: TextStyle(
+        color: Couleur.white,
+        fontSize: 18,
+        fontWeight: FontWeight.w700,
+        letterSpacing: -0.48,
+      ),
+      bodySmall: TextStyle(
+        color: Couleur.darkGray,
+        fontSize: 12,
+      ),
+      labelLarge: TextStyle(
+        color: Couleur.black,
         fontSize: 20,
-        fontWeight: FontWeight.w600,
+        fontWeight: FontWeight.w800,
+      ),
+      labelMedium: TextStyle(
+        color: Couleur.blue,
+        fontSize: 16,
+        fontWeight: FontWeight.w800,
+      ),
+      labelSmall: TextStyle(
+        color: Couleur.blue,
+        fontWeight: FontWeight.w700,
       ),
     ),
   );
@@ -58,6 +84,7 @@ class Themes {
     textTheme: GoogleFonts.interTextTheme(
       ThemeData(brightness: Brightness.dark).textTheme,
     ),
+    primaryColor: Colors.white,
     colorScheme: const ColorScheme(
       brightness: Brightness.dark,
       primary: Couleur.white,
@@ -75,7 +102,7 @@ class Themes {
     visualDensity: VisualDensity.comfortable,
     brightness: Brightness.dark,
     appBarTheme: const AppBarTheme(
-      systemOverlayStyle: SystemUiOverlayStyle.light,
+      systemOverlayStyle: SystemUiOverlayStyle.dark,
       backgroundColor: Couleur.black,
       foregroundColor: Couleur.white,
       iconTheme: IconThemeData(
