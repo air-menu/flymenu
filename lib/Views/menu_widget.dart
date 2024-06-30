@@ -69,11 +69,11 @@ class _MenuWidgetState extends State<MenuWidget> {
                                         shrinkWrap: true,
                                         scrollDirection: Axis.horizontal,
                                         padding: const EdgeInsets.symmetric(vertical: 10),
-                                        itemCount: viewModel.categories.collection.length,
+                                        itemCount: viewModel.categoriesService.categories.collection.length,
                                         itemBuilder: (BuildContext context, int index) {
                                           return
                                             SelectableLabel(
-                                                selectable: viewModel.categories.collection[index],
+                                                selectable: viewModel.categoriesService.categories.collection[index],
                                                 onTap: () {
                                                   viewModel.onItemChange(index);
                                                 });

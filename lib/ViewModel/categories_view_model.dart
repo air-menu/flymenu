@@ -1,12 +1,15 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flymenu/Helper/observable_collection.dart';
 import 'package:flymenu/Model/categorie.dart';
+import 'package:flymenu/Repository/categorie_repository.dart';
+import 'package:flymenu/Services/categories_services.dart';
 
 import '../Repository/Datas/memory_data.dart';
 
 class CategoriesViewModel extends ChangeNotifier {
 
-  ObservableCollection<Categorie> categories = ObservableCollection<Categorie>();
+  CategoriesService categoriesService = CategoriesService();
 
   late String _categorieText;
 
@@ -18,15 +21,13 @@ class CategoriesViewModel extends ChangeNotifier {
   }
 
   CategoriesViewModel(){
-    final MemoryData memoryData = MemoryData();
-    categories.addAll(memoryData.categories);
-    categories.collection.first.isSelected = true;
-    updateText();
+    categorieText = "";
+    categoriesService.update = () => notifyListeners();
   }
 
    void onItemChange(int index){
-    for(var categorie in categories.collection){
-      categorie.isSelected = categorie == categories.collection[index];
+    for(var categorie in categoriesService.categories.collection){
+      categorie.isSelected = categorie == categoriesService.categories.collection[index];
     }
 
     updateText();
@@ -34,8 +35,16 @@ class CategoriesViewModel extends ChangeNotifier {
    }
 
   void updateText(){
-    categorieText = categories.collection.firstWhere((x) => x.isSelected).name;
+    categorieText = categoriesService.categories.collection.firstWhere((x) => x.isSelected).name;
   }
 
+  void updateCategorie(){
+    var list = categoriesService.categories.collection;
+    if(list.isNotEmpty && !list.any((x) => x.isSelected)){
+      list.first.isSelected = true;
+      updateText();
+    }
 
+    notifyListeners();
+  }
 }
