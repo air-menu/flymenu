@@ -7,6 +7,7 @@ import 'package:flymenu/ViewModel/categories_view_model.dart';
 import 'package:flymenu/ViewModel/products_view_model.dart';
 import 'package:flymenu/Views/menu_widget.dart';
 import 'package:flymenu/pages/parameters/language_selection_page.dart';
+import 'package:flymenu/pages/qrcode/scan.dart';
 import 'package:flymenu/styles.dart';
 import 'package:flymenu/services/auth/user_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -92,7 +93,11 @@ class _MainViewState extends State<MainView> {
                       onPressed: () => {
                         Navigator.push(context, MaterialPageRoute(builder: (context) => const LanguageSelectionPage()))
                       },
-                      icon: const Icon(Icons.language_sharp))
+                      icon: const Icon(Icons.language_sharp)),
+                  IconButton(
+                      onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const ScanQRCodePage())),
+                      icon: const Icon(Icons.qr_code_scanner)
+                  ),
                 ],
               ),
             ),
