@@ -19,6 +19,7 @@ class CategoriesService {
 
   CategoriesService._privateConstructor(){
     repository.categoriesStream.listen((listCategorie) {
+      categories.collection.clear();
       categories.addAll(listCategorie);
       update?.call();
     });

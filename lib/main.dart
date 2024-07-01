@@ -6,6 +6,7 @@ import 'package:flymenu/Services/categories_services.dart';
 import 'package:flymenu/ViewModel/categories_view_model.dart';
 import 'package:flymenu/ViewModel/products_view_model.dart';
 import 'package:flymenu/Views/menu_widget.dart';
+import 'package:flymenu/pages/parameters/language_selection_page.dart';
 import 'package:flymenu/styles.dart';
 import 'package:flymenu/services/auth/user_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -77,15 +78,23 @@ class _MainViewState extends State<MainView> {
         // Ajouter un bouton pour changer le thème
         builder: (context, child) {
           return Scaffold(
-            appBar: AppBar(
-              actions: [
-                IconButton(
-                  icon: Icon(_currentTheme.brightness == Brightness.dark
-                      ? Icons.wb_sunny
-                      : Icons.nights_stay),
-                  onPressed: _toggleTheme,
-                )
-              ],
+            bottomNavigationBar: SizedBox(
+              height: 100,
+              child: AppBar(
+                actions: [
+                  IconButton(
+                    icon: Icon(_currentTheme.brightness == Brightness.dark
+                        ? Icons.wb_sunny
+                        : Icons.nights_stay),
+                    onPressed: _toggleTheme,
+                  ),
+                  IconButton(
+                      onPressed: () => {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => const LanguageSelectionPage()))
+                      },
+                      icon: const Icon(Icons.language_sharp))
+                ],
+              ),
             ),
             body: child,
           );
