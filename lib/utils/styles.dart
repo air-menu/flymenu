@@ -15,6 +15,7 @@ class Couleur {
   static const green = Color(0xFF5CB85C);
   static const offWhite = Color(0xFFEAF0FC);
   static const lightbrown = Color(0xFFE5E5E5);
+  static const rose = Color(0xFFF4F5F5);
 
 }
 
@@ -24,6 +25,7 @@ class Themes {
     fontFamily: GoogleFonts.inter().fontFamily,
     textTheme: GoogleFonts.interTextTheme(),
     colorScheme: const ColorScheme(
+      tertiary: Couleur.rose,
       brightness: Brightness.light,
       primary: Couleur.black,
       onPrimary: Couleur.white,
@@ -48,9 +50,34 @@ class Themes {
     ),
     primaryTextTheme: const TextTheme(
       titleLarge: TextStyle(
-        color: Couleur.darkwhite,
+        color: Couleur.black,
+        fontSize: 24,
+        fontWeight: FontWeight.w700,
+        letterSpacing: -0.48,
+      ),
+      titleMedium: TextStyle(
+        color: Couleur.white,
+        fontSize: 18,
+        fontWeight: FontWeight.w700,
+        letterSpacing: -0.48,
+      ),
+      bodySmall: TextStyle(
+        color: Couleur.darkGray,
+        fontSize: 12,
+      ),
+      labelLarge: TextStyle(
+        color: Couleur.black,
         fontSize: 20,
-        fontWeight: FontWeight.w600,
+        fontWeight: FontWeight.w800,
+      ),
+      labelMedium: TextStyle(
+        color: Couleur.blue,
+        fontSize: 16,
+        fontWeight: FontWeight.w800,
+      ),
+      labelSmall: TextStyle(
+        color: Couleur.blue,
+        fontWeight: FontWeight.w700,
       ),
     ),
   );
@@ -65,7 +92,7 @@ class Themes {
       brightness: Brightness.dark,
       primary: Couleur.white,
       onPrimary: Couleur.white,
-      secondary: Couleur.blue,
+      secondary: Couleur.white,
       onSecondary: Couleur.white,
       surface: Couleur.gray,
       onSurface: Couleur.white,
@@ -83,6 +110,38 @@ class Themes {
       foregroundColor: Couleur.white,
       iconTheme: IconThemeData(
         color: Color(0xFF808080),
+      ),
+    ),
+    primaryTextTheme: const TextTheme(
+      titleLarge: TextStyle(
+        color: Couleur.black,
+        fontSize: 24,
+        fontWeight: FontWeight.w700,
+        letterSpacing: -0.48,
+      ),
+      titleMedium: TextStyle(
+        color: Couleur.white,
+        fontSize: 18,
+        fontWeight: FontWeight.w700,
+        letterSpacing: -0.48,
+      ),
+      bodySmall: TextStyle(
+        color: Couleur.darkGray,
+        fontSize: 12,
+      ),
+      labelLarge: TextStyle(
+        color: Couleur.black,
+        fontSize: 20,
+        fontWeight: FontWeight.w800,
+      ),
+      labelMedium: TextStyle(
+        color: Couleur.blue,
+        fontSize: 16,
+        fontWeight: FontWeight.w800,
+      ),
+      labelSmall: TextStyle(
+        color: Couleur.blue,
+        fontWeight: FontWeight.w700,
       ),
     ),
   );

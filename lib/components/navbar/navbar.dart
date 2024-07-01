@@ -4,6 +4,7 @@ import 'package:flymenu/pages/parameters/language_selection_page.dart';
 import 'package:flymenu/pages/profile/profileview.dart';
 import 'package:flymenu/pages/qrcode/scan.dart';
 import 'package:flymenu/pages/qrcode/generate.dart';
+import 'package:flymenu/Views/menu_widget.dart';
 
 class Navbar extends StatefulWidget {
   const Navbar({super.key});
@@ -17,9 +18,10 @@ class _Navbar extends State<Navbar> {
 
   final List<Map<String, dynamic>> navItemsMobile = [
     // TODO Ajouter les pages de l'application
-    {'icon': Icons.qr_code, 'title': 'Home', 'page': ScanQRCodePage()},
-    {'icon': Icons.qr_code_2_sharp, 'title': 'Home', 'page': GenerateQRCodePage()},
-    {'icon': Icons.home, 'title': 'Home', 'page': const LanguageSelectionPage()},
+    {'icon': Icons.qr_code, 'title': 'ScanCode', 'page': ScanQRCodePage()},
+    {'icon': Icons.qr_code_2_sharp, 'generateQRCode': 'Home', 'page': GenerateQRCodePage()},
+    {'icon': Icons.home, 'title': 'Home', 'page': const MenuWidget()},
+    {'icon': Icons.language, 'title': 'Langue', 'page': const LanguageSelectionPage()},
     {'icon': Icons.person, 'title': 'Profile', 'page': const ProfileView()},
     
     // {'icon': Icons.person, 'title': 'Profile', 'page': const MenuWidget()},
