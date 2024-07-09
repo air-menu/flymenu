@@ -4,7 +4,7 @@ import 'package:flymenu/pages/parameters/language_selection_page.dart';
 import 'package:flymenu/pages/profile/profileview.dart';
 import 'package:flymenu/pages/qrcode/scan.dart';
 import 'package:flymenu/pages/qrcode/generate.dart';
-import 'package:flymenu/Views/menu_widget.dart';
+import 'package:flymenu/pages/menu/menu_widget.dart';
 
 class Navbar extends StatefulWidget {
   const Navbar({super.key});
@@ -19,12 +19,9 @@ class _Navbar extends State<Navbar> {
   final List<Map<String, dynamic>> navItemsMobile = [
     // TODO Ajouter les pages de l'application
     {'icon': Icons.qr_code, 'title': 'ScanCode', 'page': ScanQRCodePage()},
-    {'icon': Icons.qr_code_2_sharp, 'generateQRCode': 'Home', 'page': GenerateQRCodePage()},
-    {'icon': Icons.home, 'title': 'Home', 'page': const MenuWidget()},
-    {'icon': Icons.language, 'title': 'Langue', 'page': const LanguageSelectionPage()},
+    //{'icon': Icons.qr_code, 'title': 'GenerateQRCode', 'page': GenerateQRCodePage()},
+    {'icon': Icons.menu_book_rounded, 'title': 'Menu', 'page': const MenuWidget()},
     {'icon': Icons.person, 'title': 'Profile', 'page': const ProfileView()},
-    
-    // {'icon': Icons.person, 'title': 'Profile', 'page': const MenuWidget()},
   ];
 
   @override
@@ -70,6 +67,16 @@ class _NavbarMobileState extends State<NavbarMobile> {
     return Scaffold(
       body: widget.navItems[pageIndex]['page'],
       bottomNavigationBar: Container(
+        decoration: ShapeDecoration(
+          color: Theme.of(context).scaffoldBackgroundColor,
+          shape: const RoundedRectangleBorder(
+            side: BorderSide(
+              width: 2,
+              strokeAlign: BorderSide.strokeAlignOutside,
+              color: Color(0x0C30363D),
+            ),
+          ),
+        ),
         height: 60,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
