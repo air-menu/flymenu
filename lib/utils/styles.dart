@@ -14,7 +14,7 @@ class Couleur {
   static const darkorange = Color.fromARGB(255, 209, 118, 7);
   static const green = Color(0xFF5CB85C);
   static const offWhite = Color(0xFFEAF0FC);
-  static const lightbrown = Color(0xFFE5E5E5);
+  static const lightBrown = Color(0x19E94B1B);
   static const rose = Color(0xFFF4F5F5);
 
 }
@@ -34,11 +34,12 @@ class Themes {
       surface: Couleur.gray,
       onSurface: Couleur.black,
       background: Couleur.white,
-      
       onBackground: Couleur.black,
       error: Couleur.red,
       onError: Couleur.white,
     ),
+    focusColor: Couleur.lightBrown,
+    unselectedWidgetColor: Colors.white,
     scaffoldBackgroundColor: Couleur.white,
     visualDensity: VisualDensity.comfortable,
     brightness: Brightness.light,
@@ -60,6 +61,10 @@ class Themes {
         fontSize: 18,
         fontWeight: FontWeight.w700,
         letterSpacing: -0.48,
+      ),
+      titleSmall: TextStyle(
+        color: Couleur.darkGray,
+        fontSize: 14
       ),
       bodySmall: TextStyle(
         color: Couleur.darkGray,
@@ -91,7 +96,7 @@ class Themes {
     colorScheme: const ColorScheme(
       brightness: Brightness.dark,
       primary: Couleur.white,
-      onPrimary: Couleur.white,
+      onPrimary: Couleur.black,
       secondary: Couleur.white,
       onSecondary: Couleur.white,
       surface: Couleur.gray,
@@ -100,7 +105,10 @@ class Themes {
       onBackground: Couleur.white,
       error: Couleur.red,
       onError: Couleur.white,
+      tertiary: Couleur.rose
     ),
+    focusColor: Couleur.lightBrown,
+    unselectedWidgetColor: Couleur.gray,
     scaffoldBackgroundColor: Couleur.black,
     visualDensity: VisualDensity.comfortable,
     brightness: Brightness.dark,
@@ -125,8 +133,12 @@ class Themes {
         fontWeight: FontWeight.w700,
         letterSpacing: -0.48,
       ),
+      titleSmall: TextStyle(
+          color: Couleur.black,
+          fontSize: 14
+      ),
       bodySmall: TextStyle(
-        color: Couleur.darkGray,
+        color: Couleur.white,
         fontSize: 12,
       ),
       labelLarge: TextStyle(

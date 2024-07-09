@@ -13,6 +13,7 @@ class CategoriesService {
   ObservableCollection<Categorie> categories = ObservableCollection<Categorie>();
 
   Function()? update;
+
   static final CategoriesService _instance = CategoriesService._privateConstructor();
 
   factory CategoriesService() => _instance;

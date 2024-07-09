@@ -1,9 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
+import 'package:flymenu/ViewModel/theme_view_model.dart';
 import 'package:flymenu/services/auth/user_auth.dart';
 import 'package:flymenu/services/auth/authentication_service.dart';
 import 'package:flymenu/utils/styles.dart';
+import 'package:provider/provider.dart';
 
 class ProfileView extends StatefulWidget {
   const ProfileView({super.key});
@@ -27,6 +29,7 @@ class _ProfileView extends State<ProfileView> {
             Container(
               padding: const EdgeInsets.all(16.0),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
                     FlutterI18n.translate(context, 'KEY_PARAMETRAGE'),
@@ -37,6 +40,10 @@ class _ProfileView extends State<ProfileView> {
                     ),
                   ),
                   const SizedBox(width: 16),
+                  IconButton(
+                    icon: context.watch<ThemeViewModel>().currentIcon,
+                    onPressed: context.watch<ThemeViewModel>().toggleTheme,
+                  ),
                 ],
               ),
             ),
