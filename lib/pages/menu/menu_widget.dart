@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flymenu/ViewModel/categories_view_model.dart';
 import 'package:flymenu/ViewModel/products_view_model.dart';
-import 'package:flymenu/Views/Widget/categorie_label.dart';
-import 'package:flymenu/Views/Widget/element_list_widget.dart';
-import 'package:flymenu/Views/Widget/product_widget.dart';
+import 'package:flymenu/pages/menu/Widget/categorie_label.dart';
+import 'package:flymenu/pages/menu/Widget/element_list_widget.dart';
+import 'package:flymenu/pages/menu/Widget/product_widget.dart';
 import 'package:provider/provider.dart';
-import '../Repository/Datas/memory_data.dart';
+
+import '../../Repository/Datas/memory_data.dart';
 
 class MenuWidget extends StatefulWidget {
 
@@ -55,7 +56,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                         Text(
                           'Lorem ipsum sit dolore amet et saepe adrium venit. Lorem ipsum sit dolore amet et saepe adrium venit.',
                           softWrap: true,
-                          style: Theme.of(context).primaryTextTheme.bodySmall,
+                          style: Theme.of(context).primaryTextTheme.titleSmall,
                         ),
                         Consumer<CategoriesViewModel>(
                             builder: (context, viewModel, child){

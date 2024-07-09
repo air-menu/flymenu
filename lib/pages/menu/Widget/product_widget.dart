@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flymenu/Helper/colors_constante.dart';
 import 'package:flymenu/Model/volumetric.dart';
-import 'package:flymenu/Views/Widget/happy_hour_widget.dart';
-import 'package:flymenu/Views/menu_widget.dart';
+import 'package:flymenu/pages/menu/Widget/happy_hour_widget.dart';
+import 'package:flymenu/pages/menu/menu_widget.dart';
 
-import '../../Model/boisson.dart';
-import '../../Model/categorie.dart';
-import '../../Model/product.dart';
+import '../../../Model/boisson.dart';
+import '../../../Model/product.dart';
 import 'categorie_label.dart';
 
 class ProductWidget extends StatefulWidget {
@@ -51,7 +50,7 @@ class _ProductWidgetState extends State<ProductWidget> {
             Expanded(
               flex: 2,
               child: Padding(
-                  padding: const EdgeInsets.only(left: 30, right: 30, top: 30),
+                  padding: const EdgeInsets.only(left: 30, right: 30, top: 30, bottom: 30),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -129,7 +128,7 @@ class _ProductWidgetState extends State<ProductWidget> {
                                   ),
                                 ),
                               ),
-                              Text("${widget.product.price * widget.product.getPercentage()}€ TTC", style: Theme.of(context).primaryTextTheme.labelMedium),
+                              Text("${widget.product.price - (widget.product.price * widget.product.getPercentage())}€ TTC", style: Theme.of(context).primaryTextTheme.labelMedium),
                             ],
                           ),
                           ElevatedButton(

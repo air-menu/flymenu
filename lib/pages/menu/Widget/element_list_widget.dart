@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flymenu/Helper/colors_constante.dart';
 import 'package:flymenu/Model/product.dart';
-import 'package:flymenu/Views/Widget/happy_hour_widget.dart';
+import 'package:flymenu/pages/menu/Widget/happy_hour_widget.dart';
 
 class ElementListWidget extends StatefulWidget {
   const ElementListWidget({super.key, required this.product});
