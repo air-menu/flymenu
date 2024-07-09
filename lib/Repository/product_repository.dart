@@ -8,7 +8,15 @@ class ProductRepository implements IRepository<Product> {
 
   late FirebaseFirestore _firestore;
 
-  ProductRepository(FirebaseFirestore instance) { _firestore = instance; }
+  Stream<List<Product>> get productStream =>
+      _firestore.collection(collectionName).snapshots().map((querySnapshot) {
+        return querySnapshot.docs.map((doc) => Product.fromFirestore(doc)).toList();
+      });
+
+  ProductRepository(FirebaseFirestore instance)
+  {
+    _firestore = instance;
+  }
 
   /// Delete the product item
   @override

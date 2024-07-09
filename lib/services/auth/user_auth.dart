@@ -14,10 +14,10 @@ class UserAuth extends StatelessWidget {
           final User? user = snapshot.data;
           if (user == null) {
             // si user non connecté
-            return const LoginMobileView();
+            return const LoginView();
           } else if (!user.emailVerified) {
             // si user connecté mais email non vérifié
-            return const LoginMobileView();
+            return const LoginView();
           }else {
             // redirection home si user connecté
             return const MainContentView();

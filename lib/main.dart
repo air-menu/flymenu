@@ -2,11 +2,16 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flymenu/styles.dart';
+import 'package:flymenu/ViewModel/theme_view_model.dart';
+import 'package:flymenu/ViewModel/categories_view_model.dart';
+import 'package:flymenu/ViewModel/products_view_model.dart';
+import 'package:flymenu/services/categories_services.dart';
+import 'package:flymenu/utils/styles.dart';
 import 'package:flymenu/services/auth/user_auth.dart';
 import 'package:flymenu/components/navbar/navbar.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flymenu/firebase_options.dart';
+import 'package:flymenu/services/firebase_options.dart';
+import 'package:provider/provider.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,62 +30,48 @@ class MainView extends StatefulWidget {
 }
 
 class _MainViewState extends State<MainView> {
-  ThemeData _currentTheme = Themes.darkTheme;
-
-  void _toggleTheme() {
-    setState(() {
-      _currentTheme = _currentTheme.brightness == Brightness.dark
-          ? Themes.lightTheme
-          : Themes.darkTheme;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      localizationsDelegates: [
-        FlutterI18nDelegate(
-          translationLoader: FileTranslationLoader(
-            basePath: "assets/flutter_i18n",
-            fallbackFile: 'en',
-            useCountryCode: false,
-          ),
-          missingTranslationHandler: (key, locale) {
-            if (kDebugMode) {
-              print('I18n --- Missing Key: $key, '
-                  'languageCode: ${locale?.languageCode}');
-            }
-          },
+    return MultiProvider(
+      providers: [
+        Provider(create: (context) => CategoriesService()),
+        ChangeNotifierProvider(create: (context) => ThemeViewModel()),
+        ChangeNotifierProvider(create: (context) => CategoriesViewModel()),
+        ChangeNotifierProvider(create: (context) => ProductsViewModel())
+      ],
+      child: Consumer<ThemeViewModel>(
+          builder: (context, themeViewModel, child) {
+            return MaterialApp(
+              localizationsDelegates: [
+                FlutterI18nDelegate(
+                  translationLoader: FileTranslationLoader(
+                    basePath: "assets/flutter_i18n",
+                    fallbackFile: 'en',
+                    useCountryCode: false,
+                  ),
+                  missingTranslationHandler: (key, locale) {
+                    if (kDebugMode) {
+                      print('I18n --- Missing Key: $key, '
+                          'languageCode: ${locale?.languageCode}');
+                    }
+                  },
+                ),
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+                GlobalCupertinoLocalizations.delegate,
+              ],
+              supportedLocales: const [
+                Locale('en'),
+                Locale('es'),
+                Locale('fr'),
+              ],
+              home: UserAuth(),
+              theme: themeViewModel.currentTheme,
+            );
+          }
         ),
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      supportedLocales: const [
-        Locale('en'),
-        Locale('es'),
-        Locale('fr'),
-      ],
-      home: UserAuth(),
-      // Changer le thème actuel ici
-      theme: _currentTheme,
-      // Ajouter un bouton pour changer le thème
-      builder: (context, child) {
-        return Scaffold(
-          appBar: AppBar(
-            actions: [
-              IconButton(
-                icon: Icon(_currentTheme.brightness == Brightness.dark
-                    ? Icons.wb_sunny
-                    : Icons.nights_stay),
-                onPressed: _toggleTheme,
-              )
-            ],
-          ),
-          body: child,
-        );
-      },
-    );
+      );
   }
 }
 

@@ -1,26 +1,20 @@
-import 'package:flutter/material.dart';
-
-import '../Model/product.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flymenu/Helper/observable_collection.dart';
+import 'package:flymenu/Model/product.dart';
+import 'package:flymenu/Repository/product_repository.dart';
 
 class ProductsViewModel extends ChangeNotifier {
-  List<Product> _products = [];
 
-  List<Product> get products => _products;
+  ObservableCollection<Product> products = ObservableCollection<Product>();
 
-  void addProduct(Product item){
-    _products.add(item);
-    notifyListeners();
+  ProductRepository repository = ProductRepository(FirebaseFirestore.instance);
+
+  ProductsViewModel(){
+    repository.productStream.listen((listProduct) {
+      products.collection.clear();
+      products.addAll(listProduct);
+      notifyListeners();
+    });
   }
-
-  void removeProduct(Product item){
-    _products.remove(item);
-    notifyListeners();
-  }
-
-  void updateProduct(Product newProduct, Product oldProduct){
-    final index = _products.indexOf(oldProduct);
-    _products[index] = newProduct;
-    notifyListeners();
-  }
-
 }

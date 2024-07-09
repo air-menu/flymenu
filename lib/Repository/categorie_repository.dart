@@ -8,6 +8,11 @@ class CategorieRepository implements IRepository<Categorie> {
 
   late FirebaseFirestore _firestore;
 
+  Stream<List<Categorie>> get categoriesStream =>
+      _firestore.collection(collectionName).snapshots().map((querySnapshot) {
+        return querySnapshot.docs.map((doc) => Categorie.fromFirestore(doc)).toList();
+      });
+
   CategorieRepository(FirebaseFirestore instance) { _firestore = instance; }
 
   /// Delete the Categorie item

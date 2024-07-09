@@ -10,6 +10,7 @@ class Product {
   double price;
   String imagePath;
   bool isHappyHour;
+  int? percentageReduce;
 
   Categorie categorie;
 
@@ -20,7 +21,8 @@ class Product {
     required this.price,
     required this.imagePath,
     required this.categorie,
-    required this.isHappyHour
+    required this.isHappyHour,
+    this.percentageReduce
   });
 
   /// Method for create the instance of product from datas from firestore
@@ -34,6 +36,7 @@ class Product {
       imagePath: data['imagePath'] ?? '',
       isHappyHour: data['isHappyHour'] ?? false,
       categorie: Categorie.fromFirestore(doc, isFromObject: true),
+      percentageReduce: data['percentageReduce']
     );
   }
 
@@ -45,7 +48,16 @@ class Product {
       'price': price,
       'imagePath': imagePath,
       'isHappyHour': isHappyHour,
-      'categorie' : categorie.toMap()
+      'categorie' : categorie.toMap(),
+      'percentageReduce': percentageReduce
     };
+  }
+
+  double getPercentage(){
+    if(!isHappyHour || percentageReduce == null) {
+      return 1;
+    }
+
+    return percentageReduce! / 100;
   }
 }

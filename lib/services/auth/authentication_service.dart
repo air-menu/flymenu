@@ -108,7 +108,7 @@ class AuthenticationService {
           password: password,
         );
 
-        String? uid = userCredential.user?.uid;
+        String uid = userCredential.user!.uid;
         UserModel userModel = UserModel(
             uid: uid,
             email: email,

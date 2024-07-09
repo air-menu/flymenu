@@ -11,8 +11,11 @@ class Couleur {
   static const white = Colors.white;
   static const darkwhite = Color(0xFFE5E5E5);
   static const orange = Color(0xFFFFA62B);
+  static const darkorange = Color.fromARGB(255, 209, 118, 7);
   static const green = Color(0xFF5CB85C);
   static const offWhite = Color(0xFFEAF0FC);
+  static const lightBrown = Color(0x19E94B1B);
+  static const rose = Color(0xFFF4F5F5);
 
 }
 
@@ -22,18 +25,21 @@ class Themes {
     fontFamily: GoogleFonts.inter().fontFamily,
     textTheme: GoogleFonts.interTextTheme(),
     colorScheme: const ColorScheme(
+      tertiary: Couleur.rose,
       brightness: Brightness.light,
       primary: Couleur.black,
       onPrimary: Couleur.white,
       secondary: Couleur.blue,
       onSecondary: Couleur.white,
       surface: Couleur.gray,
-      onSurface: Couleur.white,
+      onSurface: Couleur.black,
       background: Couleur.white,
       onBackground: Couleur.black,
       error: Couleur.red,
       onError: Couleur.white,
     ),
+    focusColor: Couleur.lightBrown,
+    unselectedWidgetColor: Colors.white,
     scaffoldBackgroundColor: Couleur.white,
     visualDensity: VisualDensity.comfortable,
     brightness: Brightness.light,
@@ -45,9 +51,38 @@ class Themes {
     ),
     primaryTextTheme: const TextTheme(
       titleLarge: TextStyle(
-        color: Couleur.darkwhite,
+        color: Couleur.black,
+        fontSize: 24,
+        fontWeight: FontWeight.w700,
+        letterSpacing: -0.48,
+      ),
+      titleMedium: TextStyle(
+        color: Couleur.white,
+        fontSize: 18,
+        fontWeight: FontWeight.w700,
+        letterSpacing: -0.48,
+      ),
+      titleSmall: TextStyle(
+        color: Couleur.darkGray,
+        fontSize: 14
+      ),
+      bodySmall: TextStyle(
+        color: Couleur.darkGray,
+        fontSize: 12,
+      ),
+      labelLarge: TextStyle(
+        color: Couleur.black,
         fontSize: 20,
-        fontWeight: FontWeight.w600,
+        fontWeight: FontWeight.w800,
+      ),
+      labelMedium: TextStyle(
+        color: Couleur.blue,
+        fontSize: 16,
+        fontWeight: FontWeight.w800,
+      ),
+      labelSmall: TextStyle(
+        color: Couleur.blue,
+        fontWeight: FontWeight.w700,
       ),
     ),
   );
@@ -61,8 +96,8 @@ class Themes {
     colorScheme: const ColorScheme(
       brightness: Brightness.dark,
       primary: Couleur.white,
-      onPrimary: Couleur.white,
-      secondary: Couleur.blue,
+      onPrimary: Couleur.black,
+      secondary: Couleur.white,
       onSecondary: Couleur.white,
       surface: Couleur.gray,
       onSurface: Couleur.white,
@@ -70,7 +105,10 @@ class Themes {
       onBackground: Couleur.white,
       error: Couleur.red,
       onError: Couleur.white,
+      tertiary: Couleur.rose
     ),
+    focusColor: Couleur.lightBrown,
+    unselectedWidgetColor: Couleur.gray,
     scaffoldBackgroundColor: Couleur.black,
     visualDensity: VisualDensity.comfortable,
     brightness: Brightness.dark,
@@ -80,6 +118,42 @@ class Themes {
       foregroundColor: Couleur.white,
       iconTheme: IconThemeData(
         color: Color(0xFF808080),
+      ),
+    ),
+    primaryTextTheme: const TextTheme(
+      titleLarge: TextStyle(
+        color: Couleur.black,
+        fontSize: 24,
+        fontWeight: FontWeight.w700,
+        letterSpacing: -0.48,
+      ),
+      titleMedium: TextStyle(
+        color: Couleur.white,
+        fontSize: 18,
+        fontWeight: FontWeight.w700,
+        letterSpacing: -0.48,
+      ),
+      titleSmall: TextStyle(
+          color: Couleur.black,
+          fontSize: 14
+      ),
+      bodySmall: TextStyle(
+        color: Couleur.white,
+        fontSize: 12,
+      ),
+      labelLarge: TextStyle(
+        color: Couleur.black,
+        fontSize: 20,
+        fontWeight: FontWeight.w800,
+      ),
+      labelMedium: TextStyle(
+        color: Couleur.blue,
+        fontSize: 16,
+        fontWeight: FontWeight.w800,
+      ),
+      labelSmall: TextStyle(
+        color: Couleur.blue,
+        fontWeight: FontWeight.w700,
       ),
     ),
   );
