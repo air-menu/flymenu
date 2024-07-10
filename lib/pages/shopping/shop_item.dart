@@ -21,33 +21,48 @@ class ShopItemState extends State<ShopItem> {
   Widget build(BuildContext context) {
     var product = widget.productQuantity.key;
     return Row(
+      mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.spaceAround,
-      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Expanded(
-          flex: 3,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(product.title, style: Theme.of(context).primaryTextTheme.labelLarge),
-              Text("${product.price} €", style: Theme.of(context).primaryTextTheme.labelMedium),
-            ],
-          ),
-        ),
-        Expanded(
-          flex: 1,
-          child: Text("x${widget.productQuantity.value}", style: Theme.of(context).primaryTextTheme.labelMedium)
-        ),
-        Expanded(
+        Flexible(
           flex: 2,
           child: Column(
             children: [
-              IconButton(icon: const Icon(Icons.keyboard_arrow_up), onPressed: () => context.read<ShopViewModel>().upQuantity(product)),
-              IconButton(icon: const Icon(Icons.keyboard_arrow_down), onPressed: () => context.read<ShopViewModel>().downQuantity(product)),
+              Text(product.title, style: Theme.of(context).primaryTextTheme.labelLarge),
+              Text("${product.getPriceReduce()} €", style: Theme.of(context).primaryTextTheme.labelMedium),
             ],
           ),
         ),
-        IconButton(icon: const Icon(Icons.remove), onPressed: () => context.read<ShopViewModel>().removeProduct(product)),
+        Flexible(
+          flex: 3,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Flexible(
+                flex: 1,
+                child: Text("x${widget.productQuantity.value}", style: Theme.of(context).primaryTextTheme.labelMedium)
+              ),
+              Flexible(
+                flex: 2,
+                child: Column(
+                  children: [
+                    IconButton(
+                      icon: const Icon(Icons.keyboard_arrow_up),
+                      onPressed: () => context.read<ShopViewModel>().upQuantity(product),
+                      padding: const EdgeInsets.only(top: 20),
+                    ),
+                    IconButton(
+                      icon: const Icon(Icons.keyboard_arrow_down),
+                      onPressed: () => context.read<ShopViewModel>().downQuantity(product),
+                      padding: const EdgeInsets.only(bottom: 20),
+                    ),
+                  ],
+                ),
+              ),
+              IconButton(icon: const Icon(Icons.remove), onPressed: () => context.read<ShopViewModel>().removeProduct(product)),
+            ],
+          ),
+        ),
       ],
     );
   }

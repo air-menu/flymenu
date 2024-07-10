@@ -130,7 +130,7 @@ class _ProductWidgetState extends State<ProductWidget> {
                                   ),
                                 ),
                               ),
-                              Text("${widget.product.price - (widget.product.price * widget.product.getPercentage())}€ TTC", style: Theme.of(context).primaryTextTheme.labelMedium),
+                              Text("${widget.product.getPriceReduce()}€ TTC", style: Theme.of(context).primaryTextTheme.labelMedium),
                             ],
                           ),
                           Consumer<ShopViewModel>(

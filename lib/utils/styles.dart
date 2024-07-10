@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 class Couleur {
   static const blue = Color(0xFF217FB4);
   static const red = Color(0xFFC50909);
-  static const lightGray = Color(0xFFB3AEAD);
+  static const lightGray = Color(0x0C30363D);
   static const gray = Color(0xFF828282);
   static const black = Colors.black;
   static const darkGray = Color(0xFF333333);
@@ -17,7 +17,7 @@ class Couleur {
   static const offWhite = Color(0xFFEAF0FC);
   static const lightBrown = Color(0x19E94B1B);
   static const rose = Color(0xFFF4F5F5);
-
+  static const mediumGray = Color(0x7F30363D);
 }
 
 class Themes {
@@ -28,7 +28,7 @@ class Themes {
     colorScheme: const ColorScheme(
       tertiary: Couleur.rose,
       brightness: Brightness.light,
-      primary: Couleur.black,
+      primary: Couleur.blue,
       onPrimary: Couleur.white,
       secondary: Couleur.blue,
       onSecondary: Couleur.white,
@@ -70,6 +70,20 @@ class Themes {
       bodySmall: TextStyle(
         color: Couleur.darkGray,
         fontSize: 12,
+      ),
+      bodyMedium: TextStyle(
+        color: Couleur.mediumGray,
+        fontSize: 16,
+        fontWeight: FontWeight.w700,
+        height: 0,
+        letterSpacing: -0.32,
+      ),
+      bodyLarge: TextStyle(
+        color: Couleur.black,
+        fontSize: 16,
+        fontWeight: FontWeight.w700,
+        height: 0,
+        letterSpacing: -0.32,
       ),
       labelLarge: TextStyle(
         color: Couleur.black,

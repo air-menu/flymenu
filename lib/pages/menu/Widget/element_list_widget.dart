@@ -65,7 +65,7 @@ class ElementListState extends State<ElementListWidget> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
-                          "${widget.product.price.toString()} €",
+                          "${widget.product.getPriceReduce().toString()} €",
                           style: Theme.of(context).primaryTextTheme.labelMedium,
                         ),
                         const SizedBox(width: 8),
