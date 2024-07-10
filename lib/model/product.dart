@@ -60,4 +60,8 @@ class Product {
 
     return percentageReduce! / 100;
   }
+
+  double getPriceReduce(){
+    return price - (getPercentage() == 1 ? 0 : price * getPercentage());
+  }
 }
