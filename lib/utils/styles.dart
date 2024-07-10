@@ -5,7 +5,8 @@ import 'package:google_fonts/google_fonts.dart';
 class Couleur {
   static const blue = Color(0xFF217FB4);
   static const red = Color(0xFFC50909);
-  static const gray = Color(0xFF666666);
+  static const lightGray = Color(0xFFB3AEAD);
+  static const gray = Color(0xFF828282);
   static const black = Colors.black;
   static const darkGray = Color(0xFF333333);
   static const white = Colors.white;
@@ -31,8 +32,8 @@ class Themes {
       onPrimary: Couleur.white,
       secondary: Couleur.blue,
       onSecondary: Couleur.white,
-      surface: Couleur.gray,
-      onSurface: Couleur.black,
+      surface: Couleur.lightGray,
+      onSurface: Couleur.gray,
       background: Couleur.white,
       onBackground: Couleur.black,
       error: Couleur.red,

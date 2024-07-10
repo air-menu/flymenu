@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flymenu/ViewModel/shop_view_model.dart';
 import 'package:flymenu/ViewModel/theme_view_model.dart';
 import 'package:flymenu/ViewModel/categories_view_model.dart';
 import 'package:flymenu/ViewModel/products_view_model.dart';
@@ -38,7 +39,8 @@ class _MainViewState extends State<MainView> {
         Provider(create: (context) => CategoriesService()),
         ChangeNotifierProvider(create: (context) => ThemeViewModel()),
         ChangeNotifierProvider(create: (context) => CategoriesViewModel()),
-        ChangeNotifierProvider(create: (context) => ProductsViewModel())
+        ChangeNotifierProvider(create: (context) => ProductsViewModel()),
+        ChangeNotifierProvider(create: (context) => ShopViewModel())
       ],
       child: Consumer<ThemeViewModel>(
           builder: (context, themeViewModel, child) {

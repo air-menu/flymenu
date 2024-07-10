@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flymenu/Helper/colors_constante.dart';
 import 'package:flymenu/Model/volumetric.dart';
+import 'package:flymenu/ViewModel/shop_view_model.dart';
 import 'package:flymenu/pages/menu/Widget/happy_hour_widget.dart';
 import 'package:flymenu/pages/menu/menu_widget.dart';
+import 'package:provider/provider.dart';
 
 import '../../../Model/boisson.dart';
 import '../../../Model/product.dart';
@@ -131,21 +133,26 @@ class _ProductWidgetState extends State<ProductWidget> {
                               Text("${widget.product.price - (widget.product.price * widget.product.getPercentage())}€ TTC", style: Theme.of(context).primaryTextTheme.labelMedium),
                             ],
                           ),
-                          ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(50))),
-                              backgroundColor: const Color(0xFF217FB4),
-                            ),
-                            onPressed: () => {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder:
-                                          (context) => const MenuWidget()
-                                  )
-                              ),
-                            },
-                            child: Text("Ajouter au panier + ", style: Theme.of(context).primaryTextTheme.titleMedium),
+                          Consumer<ShopViewModel>(
+                              builder: (context, shopViewModel, child) {
+                                return ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(50))),
+                                    backgroundColor: const Color(0xFF217FB4),
+                                  ),
+                                  onPressed: () => {
+                                    shopViewModel.addProduct(widget.product),
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder:
+                                                (context) => const MenuWidget()
+                                        )
+                                    ),
+                                  },
+                                  child: Text("Ajouter au panier + ", style: Theme.of(context).primaryTextTheme.titleMedium),
+                                );
+                              }
                           ),
                         ],
                       ),
