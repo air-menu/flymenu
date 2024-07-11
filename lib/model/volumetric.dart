@@ -2,12 +2,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flymenu/Model/selectable.dart';
 
 class Volumetric extends Selectable {
-
-  String? id;
+  
   double value;
   String unit;
 
-  Volumetric({this.id, required this.value, required this.unit}) {
+  Volumetric({required this.value, required this.unit}) {
     super.name = "$value $unit";
   }
 
@@ -17,25 +16,23 @@ class Volumetric extends Selectable {
 
     if (isFromObject) {
       var result = data['volumetrie'];
-      return Volumetric(
-          id: result['id'], value: result['value'], unit: data['unit']);
+      return Volumetric(value: result['value'], unit: data['unit']);
     }
     else {
-      return Volumetric(id: data['id'], value: data['value'], unit: data['unit']);
+      return Volumetric(value: data['value'], unit: data['unit']);
     }
   }
 
-  factory Volumetric.fromMap(Map<String, dynamic> map) {
+  factory Volumetric.fromMap(String volume) {
+    var splitString = volume.split(" ");
     return Volumetric(
-        id: map['id'],
-        value: map['value'],
-        unit: map['unit']
+        value: double.parse(splitString[0]),
+        unit: splitString[1]
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
-      'id': id,
       'value': value,
       'unit': unit
     };

@@ -4,25 +4,22 @@ import 'package:flymenu/Repository/interface_repository.dart';
 
 class ProductRepository implements IRepository<Product> {
 
-  static const collectionName = "Products";
+  late String collectionName;
 
-  late FirebaseFirestore _firestore;
+  late final FirebaseFirestore firestore;
 
   Stream<List<Product>> get productStream =>
-      _firestore.collection(collectionName).snapshots().map((querySnapshot) {
+      firestore.collection(collectionName).snapshots().map((querySnapshot) {
         return querySnapshot.docs.map((doc) => Product.fromFirestore(doc)).toList();
       });
 
-  ProductRepository(FirebaseFirestore instance)
-  {
-    _firestore = instance;
-  }
+  ProductRepository(this.firestore, this.collectionName);
 
   /// Delete the product item
   @override
   Future<void> delete(Product item) async {
     try {
-      await _firestore.collection(collectionName).doc(item.id).delete();
+      await firestore.collection(collectionName).doc(item.id).delete();
     } catch (e) {
       throw Exception('Error deleting product: $e');
     }
@@ -32,7 +29,7 @@ class ProductRepository implements IRepository<Product> {
   @override
   Future<List<Product>> getAll() async {
     try{
-      var result = await _firestore.collection(collectionName).get();
+      var result = await firestore.collection(collectionName).get();
       return result.docs.map((doc) => Product.fromFirestore(doc)).toList();
     } catch(e){
       throw Exception('Error load all products : $e');
@@ -43,7 +40,7 @@ class ProductRepository implements IRepository<Product> {
   @override
   Future<Product?> getByID(String id) async {
     try {
-      var doc = await _firestore.collection(collectionName).doc(id).get();
+      var doc = await firestore.collection(collectionName).doc(id).get();
       return doc.exists ? Product.fromFirestore(doc) : null;
     }catch (e) {
       throw Exception('Error product with this id : $id not found, error : $e');
@@ -54,7 +51,7 @@ class ProductRepository implements IRepository<Product> {
   @override
   Future<void> insert(Product item) async {
     try {
-      await _firestore.collection(collectionName).doc(item.id).set(item.toMap());
+      await firestore.collection(collectionName).doc(item.id).set(item.toMap());
     }
     catch (e) {
       throw Exception('Error, the product can t be added, error : $e');
@@ -65,7 +62,7 @@ class ProductRepository implements IRepository<Product> {
   @override
   Future<void> update(Product item) async {
     try {
-      await _firestore.collection(collectionName).doc(item.id).update(item.toMap());
+      await firestore.collection(collectionName).doc(item.id).update(item.toMap());
     }
     catch (e) {
       throw Exception('Error the product cannot be updated $e');

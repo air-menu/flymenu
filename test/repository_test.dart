@@ -4,15 +4,17 @@ import 'package:fake_cloud_firestore/fake_cloud_firestore.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flymenu/Model/product.dart';
 import 'package:flymenu/Repository/Datas/memory_data.dart';
+import 'package:flymenu/Repository/boisson_repository.dart';
 import 'package:flymenu/Repository/categorie_repository.dart';
 import 'package:flymenu/Repository/product_repository.dart';
 
 void main() async {
 
   final firestore = FakeFirebaseFirestore();
+
   var data = MemoryData();
 
-  ProductRepository productRepository = ProductRepository(firestore);
+  ProductRepository productRepository = ProductRepository(firestore, "Products");
   CategorieRepository categorieRepository = CategorieRepository(firestore);
 
   group("Test link with the database (Fake_cloud_Firestore) : Products", () {
@@ -71,6 +73,40 @@ void main() async {
     test("Remove categorie", () async {
       await categorieRepository.delete(data.categories[0]);
       final result = await categorieRepository.getAll();
+      expect(result.length, 0);
+    });
+  });
+
+  BoissonRepository boissonRepository = BoissonRepository(firestore);
+
+  assert(boissonRepository.collectionName == "Boissons");
+
+  group("Test link with the database (Fake_cloud_Firestore) : Boisson", () {
+    setUpAll(() async {
+      await boissonRepository.insert(data.products[4]);
+    });
+    test('Test Insert and Fetch data product', () async {
+      final result = await boissonRepository.getAll();
+      expect(result.length, 1);
+    });
+
+    test("Test update query", () async{
+      var product = await boissonRepository.getByID('124');
+      expect(product, isNotNull);
+
+      var oldTitle = product?.title;
+      product?.title = "Fanta";
+      await boissonRepository.update(product!);
+      var stringID = data.products[4].id;
+      Product? newproduct = await boissonRepository.getByID(stringID!);
+
+      expect(newproduct?.title, isNot(oldTitle));
+    });
+
+    test("Test remove query", () async {
+      await boissonRepository.delete(data.products[4]);
+      final result = await boissonRepository.getAll();
+
       expect(result.length, 0);
     });
   });
