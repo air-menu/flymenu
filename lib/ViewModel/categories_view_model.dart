@@ -1,11 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flymenu/Helper/observable_collection.dart';
-import 'package:flymenu/Model/categorie.dart';
-import 'package:flymenu/Repository/categorie_repository.dart';
 import 'package:flymenu/services/categories_services.dart';
-
-import '../Repository/Datas/memory_data.dart';
 
 class CategoriesViewModel extends ChangeNotifier {
 

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flymenu/components/navbar/navbar-item.dart';
-import 'package:flymenu/pages/parameters/language_selection_page.dart';
 import 'package:flymenu/pages/profile/profileview.dart';
 import 'package:flymenu/pages/qrcode/scan.dart';
-import 'package:flymenu/pages/qrcode/generate.dart';
 import 'package:flymenu/pages/menu/menu_widget.dart';
+import 'package:flymenu/pages/shopping/shopping_basket.dart';
 
 class Navbar extends StatefulWidget {
   const Navbar({super.key});
@@ -21,6 +20,7 @@ class _Navbar extends State<Navbar> {
     {'icon': Icons.qr_code, 'title': 'ScanCode', 'page': ScanQRCodePage()},
     //{'icon': Icons.qr_code, 'title': 'GenerateQRCode', 'page': GenerateQRCodePage()},
     {'icon': Icons.menu_book_rounded, 'title': 'Menu', 'page': const MenuWidget()},
+    {'icon': Icons.shopping_cart, 'title': 'Menu', 'page': const ShoppingBasket()},
     {'icon': Icons.person, 'title': 'Profile', 'page': const ProfileView()},
   ];
 
