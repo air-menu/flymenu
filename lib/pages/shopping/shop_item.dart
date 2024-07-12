@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flymenu/ViewModel/shop_view_model.dart';
 import 'package:provider/provider.dart';
-import 'package:screenshot/screenshot.dart';
 
 import '../../Model/product.dart';
 

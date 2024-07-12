@@ -7,7 +7,6 @@ import 'package:flymenu/ViewModel/theme_view_model.dart';
 import 'package:flymenu/ViewModel/categories_view_model.dart';
 import 'package:flymenu/ViewModel/products_view_model.dart';
 import 'package:flymenu/services/categories_services.dart';
-import 'package:flymenu/utils/styles.dart';
 import 'package:flymenu/services/auth/user_auth.dart';
 import 'package:flymenu/components/navbar/navbar.dart';
 import 'package:firebase_core/firebase_core.dart';

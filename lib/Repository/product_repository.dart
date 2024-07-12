@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flymenu/Model/product.dart';
 import 'package:flymenu/Repository/interface_repository.dart';
+
+import '../Model/product.dart';
 
 class ProductRepository implements IRepository<Product> {
 

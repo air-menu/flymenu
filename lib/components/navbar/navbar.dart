@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flymenu/components/navbar/navbar-item.dart';
-import 'package:flymenu/pages/parameters/language_selection_page.dart';
 import 'package:flymenu/pages/profile/profileview.dart';
 import 'package:flymenu/pages/qrcode/scan.dart';
-import 'package:flymenu/pages/qrcode/generate.dart';
 import 'package:flymenu/pages/menu/menu_widget.dart';
 import 'package:flymenu/pages/shopping/shopping_basket.dart';
 
