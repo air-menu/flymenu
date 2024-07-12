@@ -1,11 +1,9 @@
-import 'dart:async';
 import 'dart:math';
 
+import 'package:flymenu/Model/product.dart';
+import 'package:flymenu/Model/categorie.dart';
 import 'package:flymenu/Model/boisson.dart';
 import 'package:flymenu/Model/volumetric.dart';
-
-import '../../Model/categorie.dart';
-import '../../Model/product.dart';
 
 class MemoryData {
   final List<Categorie> categories = [];

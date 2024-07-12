@@ -28,7 +28,6 @@ class _ProductWidgetState extends State<ProductWidget> {
           color: Colors.white
         ),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Expanded(
@@ -62,7 +61,7 @@ class _ProductWidgetState extends State<ProductWidget> {
                       child: Row(
                         children: [
                           HappyHourWidget(isVisible: widget.product.isHappyHour),
-                          const Text(" -10%"),
+                          Text(" -10%", style: Theme.of(context).primaryTextTheme.labelSmall),
                         ],
                       ),
                     ),
@@ -125,6 +124,7 @@ class _ProductWidgetState extends State<ProductWidget> {
                                 child: Text(
                                   "${widget.product.price} €",
                                   style: const TextStyle(
+                                    fontSize: 12,
                                     decoration: TextDecoration.lineThrough,
                                     color: ColorConstant.gray,
                                   ),

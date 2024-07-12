@@ -38,6 +38,7 @@ class Themes {
       onBackground: Couleur.black,
       error: Couleur.red,
       onError: Couleur.white,
+      outline: Couleur.gray,
     ),
     focusColor: Couleur.lightBrown,
     unselectedWidgetColor: Colors.white,
