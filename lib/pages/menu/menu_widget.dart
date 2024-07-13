@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flymenu/Model/restaurant.dart';
 import 'package:flymenu/ViewModel/categories_view_model.dart';
 import 'package:flymenu/ViewModel/products_view_model.dart';
 import 'package:flymenu/pages/menu/Widget/categorie_label.dart';
@@ -9,8 +10,9 @@ import 'package:provider/provider.dart';
 import '../../Repository/Datas/memory_data.dart';
 
 class MenuWidget extends StatefulWidget {
+  final Restaurant restaurant;
 
-  const MenuWidget({super.key});
+  const MenuWidget({super.key, required this.restaurant});
 
   @override
   State<MenuWidget> createState() => _MenuWidgetState();
@@ -54,7 +56,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                           ),
                         ),
                         Text(
-                          'Lorem ipsum sit dolore amet et saepe adrium venit. Lorem ipsum sit dolore amet et saepe adrium venit.',
+                          'Restaurant: ${widget.restaurant.name}\nAddress: ${widget.restaurant.address}',
                           softWrap: true,
                           style: Theme.of(context).primaryTextTheme.titleSmall,
                         ),
