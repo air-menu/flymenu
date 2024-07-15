@@ -20,7 +20,7 @@ class _Navbar extends State<Navbar> {
     {'icon': Icons.qr_code, 'title': 'ScanCode', 'page': ScanQRCodePage()}, // Pour le client
     //{'icon': Icons.qr_code, 'title': 'GenerateQRCode', 'page': GenerateQRCodePage()}, // Pour le restaurateur
     // {'icon': Icons.menu_book_rounded, 'title': 'Menu', 'page': const MenuWidget()},
-    // {'icon': Icons.shopping_cart, 'title': 'panier', 'page': const ShoppingBasket()},
+    {'icon': Icons.shopping_cart, 'title': 'panier', 'page': const ShoppingBasket()},
     {'icon': Icons.person, 'title': 'Profile', 'page': const ProfileView()},
   ];
 
