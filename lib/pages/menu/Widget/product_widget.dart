@@ -139,15 +139,9 @@ class _ProductWidgetState extends State<ProductWidget> {
                                     shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(50))),
                                     backgroundColor: const Color(0xFF217FB4),
                                   ),
-                                  onPressed: () => {
-                                    shopViewModel.addProduct(widget.product),
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder:
-                                                (context) => const MenuWidget()
-                                        )
-                                    ),
+                                  onPressed: () {
+                                    shopViewModel.addProduct(widget.product);
+                                    Navigator.pop(context); // Retourne à l'écran précédent
                                   },
                                   child: Text("Ajouter au panier + ", style: Theme.of(context).primaryTextTheme.titleMedium),
                                 );

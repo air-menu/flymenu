@@ -17,10 +17,10 @@ class _Navbar extends State<Navbar> {
 
   final List<Map<String, dynamic>> navItemsMobile = [
     // TODO Ajouter les pages de l'application
-    {'icon': Icons.qr_code, 'title': 'ScanCode', 'page': ScanQRCodePage()},
-    //{'icon': Icons.qr_code, 'title': 'GenerateQRCode', 'page': GenerateQRCodePage()},
-    {'icon': Icons.menu_book_rounded, 'title': 'Menu', 'page': const MenuWidget()},
-    {'icon': Icons.shopping_cart, 'title': 'Menu', 'page': const ShoppingBasket()},
+    {'icon': Icons.qr_code, 'title': 'ScanCode', 'page': ScanQRCodePage()}, // Pour le client
+    //{'icon': Icons.qr_code, 'title': 'GenerateQRCode', 'page': GenerateQRCodePage()}, // Pour le restaurateur
+    // {'icon': Icons.menu_book_rounded, 'title': 'Menu', 'page': const MenuWidget()},
+    {'icon': Icons.shopping_cart, 'title': 'panier', 'page': const ShoppingBasket()},
     {'icon': Icons.person, 'title': 'Profile', 'page': const ProfileView()},
   ];
 
